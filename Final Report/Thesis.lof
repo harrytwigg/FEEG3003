@@ -1,0 +1,12 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces VQ-VAE Encoding and Compression: Successive levels further compress the raw audio data, discarding irrelevant information\relax }}{7}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces An example of a Mel Spectrogram showing the amplitude of different frequencies in a sound over time\cite {GettingToKnowTheMelSpectrogram}\relax }}{8}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Unrwapping Spectrogram Phase: An illustration of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite {GANSynth}\relax }}{9}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The DDSP Autoencoder: The model setup from the original paper\cite {OriginalDDSP} standardised machine learning components are shown in red, the latent varibles in green and the synthesizers in yellow.\relax }}{13}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Modified DDSP Decoder and MLP\cite {SingingDDSP}\relax }}{16}{figure.caption.10}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dataset Preprocessing: Spectrogram plot of a random 4 second sample from one of the datasets and its accomanying F0, F0 Confidence and Amplitude characteristics over time throughout the sample\relax }}{20}{figure.caption.11}%
+\addvspace {10\p@ }

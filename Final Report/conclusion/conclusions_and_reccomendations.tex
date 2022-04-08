@@ -1,0 +1,15 @@
+\chapter{Conclusions and Reccomendations}
+
+\section{Experimental Conclusions}
+
+In summary, DDSP is a very powerful tool for learning and synthesizing vocal features of the human voice. The experiments shown in this paper how it was able to learn how to accurately infer pitch, amplitude and timbre characteristics of a given vocal artist.
+
+TODO - any further achievements
+
+\section{Reccomendations}
+
+There are many future areas of research that could build on the model further.
+
+One area could address the difficulty of the model in pronouncing words. A solution could be via phoentic conditioning, as outlined in previous work\cite{SingingDDSP}. This could take the form of an encoder that takes in written phoentic information or word pronunciation, it could then potentially use this information to output pitch, amplitude and timbre envelopes. These could then be passed into a trained decoder, which could in turn synthesize actual vocalised words. Although phoentic condition may not be the best solution, one must be found so that DDSP vocal sound synthesis can be further built upon.
+
+Alternatively an encoder could be devised that converts symbolic representaition into DDSP. Seeing how long term structure has already been demonstrated in symbolic data\cite{Attention}, this higher level structural information could somehow be encoded into DDSP. In this way musical vocals (or other musical sounds such as instruments) could be genreated that contains accurate local harmonoic and noise information that sounds accurate to a listener. Such a model would bridge the gap between higher and lower level representations.

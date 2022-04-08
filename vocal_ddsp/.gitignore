@@ -1,0 +1,12 @@
+ddsp/
+env/
+.vscode/
+.mypy_cache/
+downloads/
+__pycache__/
+.~lock.Artists.csv#
+outputs/
+pretrained_models/
+separated/
+spleeter/
+training_data/

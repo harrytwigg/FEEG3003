@@ -1,0 +1,53 @@
+\section{Methodology}
+
+A critical review of existing literature on music sound synthesis (with a focus on vocal sound synthesis) was conducted. A standardised processs was developed to evaluate the quality of existing methods. This was necessary as it would be difficult to compare the results of different methods. Each of the approaches evaluated used different levels of abstraction and resolution of musical and audio data. Additionally they have different trade-offs in terms of accuracy and computational efficiency.
+
+The standardised process is based on good principles in machine learning, along with accademic best practices. The technical requirements are as follows:
+
+\subsection{Technical Requirements}
+
+\begin{itemize}
+    \item Overly time consuming methods should be penalised due to the limited time for the project.These can come in many forms eg. excessive training and computation time or extremely large datasets requirements, excessive hyperparameter tuning, or overly large networks
+    \item Use of teacher forcing or operator involvement in any methods, as this will lead to biases in the model outputs and limits the scalability and ease of use of any derived models. Manually labelled data shall also be penalised similarly.
+    \item Poor tonal quality in the output, eg. it is noticeable that the model was generated digitally as opposed to recorded. This could be caused by:
+          \begin{itemize}
+              \item Spectral leakage due to inaccuracies in fourier representations
+              \item Poor oscillatory output representation that does not sound natural
+          \end{itemize}
+    \item To analyse the tonal quality Loudness and Fundamental Frequency should be compared using L1 - the sum of the absolute differences between the predicted and actual values when comparing output values to the training data. This is a good measure of the quality of the output.
+    \item Modular systems shall be evaluated positively, due to the fact that their individual elements can be built on seperately, and the whole system acts less like a 'Black Box'.
+    \item Any discarded information eg phase that has been discarded during encoding (eg. phase) that could be presented to the network shall also be penalised. It is hypothesized that this information could be used to improve the quality of the output.
+    \item Model\cite{Attention} architectures that are specific to music and audio signal processing, as opposed to more general machine learning problems. It was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
+\end{itemize}
+
+\subsection{Academic Requirements}
+
+Well citided papers or those that are in scientific journals were looked upon favourablly, showing that other people have found the work to be valuable and more importantly, credible. It was also desired that any researched papers have open sourced code, and that the code is available for use. Without this the model cannot be easily built off of without building the codebase from the ground up, which would take considerable time. Older methods that have not been built further were evaluated negatively, as this suggests that experts in the field have judged the work to be of no further benefit and hence obscelete.
+
+\subsection{DDSP Training}
+
+After the intial research, DDSP was investigated further as it was the most promising method due to several factors discussed later in \nameref{section:DDSP}.
+
+Two different datasets were created, one male voice artist and one female voice artist, to see how the DDSP architecture would handle male and female voices differently.
+
+For each artist two different albums were picked of similar musical style to ensure consistency of vocal style across the entire dataset.
+
+The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices, any songs with cover artists or different singers to the main voice were removed.
+
+Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pretrained model seperated the vocal track from the instrumentals for each song in the album.
+
+The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices.
+
+Each dataset was then trained using the DDSP library\cite{DDSPPip} and code adapted from a variation of DDSP designed for singing\cite{SingingDDSP}. Model hyperparameters were kept the same as in the Singing DDSP paper\cite{SingingDDSP} as the researchers had demonstrated thorough testing of which hyperparameters were the best.
+
+\subsection{DDSP Inferencing}
+
+Following training of both models, the models underwent several inferencing tests:
+
+\begin{enumerate}
+    \item The models were inferenced on the same dataset that was used for training to test the models acruaccy at predicting the training dataset.
+    \item A pitch transposition was attempted. Vocal samples from the original datasret were transposed, up an and down an octave to see how the model would perform on unseen vocal ranges.
+    \item Two different vocal soundtrack, one matching the vocal style of each dataset, was passed into the trained model. Each vocal track seperated similarly using Spleeter and had pitch, amplitude and timbre levels comparable to those of the original dataset. It was then seen if could recreate the vocal track in the style of the trained vocal artist. 
+\end{enumerate}
+
+Finally, in light of the experimental results, recommendations for future work are made.

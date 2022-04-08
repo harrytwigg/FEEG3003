@@ -1,0 +1,17 @@
+\section{Symbolic Methods}
+
+Using computers to generate music is a very old field of research dating almost as far back of the invention of computers themselves\cite{Hiller1958Musical}. However, the first research into using machine learning to generate music goes back to the 1980s\cite{ConnectionistComposition}\cite{GradientDescentLearning} with the very first research on symbolic data. These higher-level representations often took the form MIDI or other musical notation.
+
+Symbolic based models provide a high-level abstraction of the musical piece, meaning that they are easier to train as the model does not have to worry the physical process to produce sound. However, they are significantly limited to music that can be described in terms of midi notation, i.e. vocals and other instruments with unique modes of being played cannot be used. One paper proposed the use of an autoregressive recurrent neural network to generate symbolic music. This is a technique that many later works built upon.
+
+A recent paper looked at applies the modern transformer machine learning architecture to symbolically generate music with long term structure. A challenge experienced in many previous pieces of work\cite{LongTermStructure}. Transformer based architectures do not rely on recurrent or convolutional based mechanisms and instead use what is called an attention-based mechanism to generate long term structure\cite{Attention}. In another paper \cite{LongTermStructure} long term music structure was generated successful.
+
+\subsection{Critical Evaluation}
+
+Symbolic methods due to theiur high level of abstraction have smaller models with less paramaters and are as such easer to train. They are proving useful with regard to generating abstract long term musical structure.
+
+The fairly recent papers showing long term structure\cite{LongTermStructure} and the use of an attention mechanism\cite{Attention} have shown that symbolic methods have future accademic and potential and relevance.
+
+However, symbolic methods are also less detailed and can only be used to generate music that is described in terms of midi or similar notation.
+
+This is a limitation of symbolic methods, as they cannot be used to generate actual audio features. Additionally they lack information about the intricacies of the human voice and expression that is hard to describe symbolically.

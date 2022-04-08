@@ -1,0 +1,74 @@
+\chapter{Proposal}
+
+\label{ch:proposal}
+
+\section{Background}
+
+Machine Learning is rapidly transforming audio processing, yielding wide ranging
+applications in business and for artists, amongst others. One particularly interesting
+area is the use of deep based learning methods for music sound synthesis.
+
+Machine Learning methods can already take musical or other sound data input, process
+it, then provide a variety of potentially useful features, these include:
+\begin{itemize}
+    \item Timbre transfer eg. changing a melody from being in one instrument to
+    another
+    \item Pitch transfer eg. transposing an instrument up an octave
+    \item Changing the room accoustics
+    \item Generation of music and speach either randomly or from a given input
+\end{itemize}
+
+\section{Aim}
+
+It is foreseeable that some machine learning sound synthesis methods have potential
+to be built on further, whilst others may be deemed obsolete. This project aims
+to compare these methods, evaluating the advantages and disadvantages of how audio
+signals are encoded and presented to them. In an optimistic scenario, new methods
+of audio signal encoding and deep learning methods for sound synthesis shall be
+researched and proposed.
+
+\section{Objectives}
+
+\begin{itemize}
+    \item Evaluate existing methods of audio signal encoding with a focus on the
+    following machine learning areas and the way data is presented to the network
+    (but not limited to):
+    \begin{itemize}
+        \item Frequency based Fourier coefficient methods eg. Tacotron, GANSynth
+        \item Autoregressive whole single sample methods eg. Wavenet, SampleRNN
+        \item DDSP a novel modular approach to sound synthesis
+    \end{itemize}
+    \item Investigate potentially innovative new methods of sound synthesis and
+    encoding, building on existing researched work, this could include:
+    \begin{itemize}
+        \item The use of a new encoding method or formatting of the input signal
+        \item Building on top of existing sound Synthesis Models, potentially making
+        use of alternative ways of encoding and presenting data to the deep network.
+        \item Finding a way of incorporating lost data eg. phase into the encoded
+        data that is presented to the model.
+    \end{itemize}
+\end{itemize}
+
+\section{Evaluation Methods}
+
+It shall be necessary for the project to set out a set of criteria for carrying
+out literary reviews on existing Learning Based Sound Synthesis Models. This must
+be done to decide if any method has potential to be built on further.
+
+\begin{itemize}
+    \item Overly complex methods should be penalised. These can come in many forms
+    eg. excessive training and computation time, extremely large datasets.
+    \item Use of teacher forcing in any methods, as this will lead to biases in
+    the model outputs.
+    \item Poor tonal quality in the output, eg. it is noticeable that the model
+    was generated digitally as opposed to recorded. This could be caused by
+    \begin{itemize}
+        \item Spectral leakage due to inaccuracies in fourier representations
+        \item Poor oscillatory output representation that does not sound natural
+    \end{itemize}
+    \item Modular systems shall be evaluated positively, due to the fact that their
+    individual elements can be built on seperately, and the whole system acts less
+    like a 'Black Box'.
+    \item Any discarded information eg phase that has been discarded during encoding
+    (eg. phase) that could be presented to the network.
+\end{itemize}
