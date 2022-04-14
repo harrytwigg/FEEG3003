@@ -40,7 +40,7 @@ Secondly phase is a cyclic quality, cyclic qualities are harder to interpret tha
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/PhaseAdjustment.png}
-    \caption{Unrwapping Spectrogram Phase: An illustration of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite{GANSynth}}
+    \caption{Unrwapping Spectrogram Phase: An illustration from the GANSynth paper of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite{GANSynth}}
     \label{fig:phase_unwrapping}
 \end{figure}
 
@@ -50,8 +50,10 @@ Spectrogram based encoding for audio signal synthesis is currently the best meth
 
 What makes spectgrogram based models useful is that conventional image processing models eg Convolutional Neural Networks or Recurrent Neural Networks can be used to process the spectrogram. This allows for a much more efficient representation of the audio signal and imaged based detection models are already fairly advanced.
 
-Raw CNN based models are however limited and don't make use of biases in sound, for instance the tendancy of natural sounds to oscillate sinusoidally at harmonic frequencies.
+Probably one of their defining advatages is they can be used to reconstruct the original audio signal from the spectrogram with the inverse Fourier Transform. If phase and magnitude spectrograms are used, the reconstructed audio signal will be almost identical to the original (phase matched).
 
 Spectrograms are at the core of a significant number of recently published music synthesis models and papers, showing accademic relevance.
+
+Models based on spectrograms, e.g. raw CNN based models are however limited and don't make use of biases in sound, for instance the tendancy of natural sounds to oscillate sinusoidally at harmonic frequencies.
 
 Therefore spectrograms although useful cannot be used to directly synthesize audio signals, a further representation to help a model relate them to sound is required, for example \nameref{section:DDSP}.

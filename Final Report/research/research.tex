@@ -4,8 +4,17 @@ The adaptation of DDSP to synthesize vocal features such as singing using the ad
 
 All research was undertaken using Google Colab notebooks and cloud hardware, primarily NVIDIA Tesla V100 GPUs.
 
-It was hypothesized that 2 albums would be the optimal size for any training dataset. Premilinary investigations on smaller datasets yielded significant overfitting and poor performance when any of the F0, amplitude or Z latent encoding features were modified during inference. Datasets of any greater size would be preferred. However, the model size was limited as the whole model had to fit onto a single GPU, and Google Colab limited theze at 16GB. Any larger models would require parallisation which was not implemented.
+Two seperate models were trained, one for a male voice (Chris Martin from Coldplay) and one for a female voice (Taylor Swift). This was done to see how the DDSP architecture would handle different vocies e.g. Alto or Tennor differently.
 
-\input{research/dataset_preparation}
+It was hypothesized that 2 albums would be the optimal size for any training dataset. Premilinary investigations on smaller datasets yielded significant overfitting and poor performance when any of the F0, amplitude latent features were modified during inference. Datasets of any greater size would be preferred. However, larger models would be slower to train.
 
-\input{research/training}
+\begin{figure}
+    \centering
+    \caption{Songs and albums going into each training dataset}
+\end{figure}
+
+\input{research/dataset_preparation/dataset_preparation.tex}
+
+\input{research/training/training.tex}
+
+\input{research/results/results.tex}

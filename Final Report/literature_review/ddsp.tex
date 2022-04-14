@@ -147,6 +147,7 @@ The fundamental frequency is however Additionally fed directly into the synthesi
 Due to the modular design, certain features can be explicitly controlled for example room acoustics. Some networks would implicitly pick up room acoustics. This method may introduce unnecessary mode covering, increasing potential training time. The DDSP model explicitly defines room acoustics using a reverberation synthesiser (see Figure \ref{fig:ddsp_model_setup}).
 
 \subsection{Measure of Loss}
+\label{sec:loss_measure}
 
 In order to train the model, it is necessary for a measure of loss to be defined. The autoencoder is tasked with minimsing the reconstruction loss, this is the difference between the synthesised audio and the target audio. Unlike in a conventional autoencoder model, loss cannot be definied pointwise as 2 waveforms may sound the same but have different pointwise characteristics. The loss function is therefore defined using a method called multi-scale spectral loss. Given the magnitude spectrograms of the target and synthesized audio, the loss is ndefined as the sum of L1 differences between both spectrograms alng with the L1 log difference between the two spectrograms.
 

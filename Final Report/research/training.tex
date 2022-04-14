@@ -1,7 +1,0 @@
-\section{Training}
-
-Two seperate models were trained, one for each of the datasets.
-
-A preprocessor was used that resampled the fundamental frequency and loudness, taking account the sample rate, frame rate, and number of timesteps. The number of timesteps was set at 1000 per 4 second clip, giving a spectral resoluiton of 4ms per timestep. This was deemed to be the best compromise between computational efficiency and accuracy.
-
-An autoencoder encoder decoder setup was used. The encoder was based on a \acrfull{RNN}.

@@ -17,7 +17,7 @@ The standardised process is based on good principles in machine learning, along 
     \item To analyse the tonal quality Loudness and Fundamental Frequency should be compared using L1 - the sum of the absolute differences between the predicted and actual values when comparing output values to the training data. This is a good measure of the quality of the output.
     \item Modular systems shall be evaluated positively, due to the fact that their individual elements can be built on seperately, and the whole system acts less like a 'Black Box'.
     \item Any discarded information eg phase that has been discarded during encoding (eg. phase) that could be presented to the network shall also be penalised. It is hypothesized that this information could be used to improve the quality of the output.
-    \item Model\cite{Attention} architectures that are specific to music and audio signal processing, as opposed to more general machine learning problems. It was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
+    \item Model architectures that are specific to music and audio signal processing are preferred, as opposed to more general machine learning problems. It was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
 \end{itemize}
 
 \subsection{Academic Requirements}
@@ -32,7 +32,7 @@ Two different datasets were created, one male voice artist and one female voice 
 
 For each artist two different albums were picked of similar musical style to ensure consistency of vocal style across the entire dataset.
 
-The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices, any songs with cover artists or different singers to the main voice were removed.
+The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices, any songs with cover artists or different singers to the main voice were removed. Each dataset was made to be approximately of similar length, this was done to ensure similar levels of generalisation between the two models.
 
 Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pretrained model seperated the vocal track from the instrumentals for each song in the album.
 
@@ -50,4 +50,4 @@ Following training of both models, the models underwent several inferencing test
     \item Two different vocal soundtrack, one matching the vocal style of each dataset, was passed into the trained model. Each vocal track seperated similarly using Spleeter and had pitch, amplitude and timbre levels comparable to those of the original dataset. It was then seen if could recreate the vocal track in the style of the trained vocal artist. 
 \end{enumerate}
 
-Finally, in light of the experimental results, recommendations for future work are made.
+Finally, in light of the experimental results, recommendations for future work in the field as a whole are made.
