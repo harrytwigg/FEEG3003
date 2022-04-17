@@ -18,6 +18,12 @@ A far bigger achievement was the re-synthesis of understandable words from the o
     \caption{(Taylor Swift) Original and resynthesized frames without latent modification}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{research/results/Coldplay/InferredRecreation.png}
+    \caption{(Coldplay) Original and resynthesized frames without latent modification}
+\end{figure}
+
 \subsection{F0 Pitch Transposition by a fixed octave}
 
 A more advanced inferencing test was then undertaken, the fundamental frequency as determined by CREPE was transposed by fixed octaves (-2, -1, 0, 0.5, 1, 2) and the inferencing was re-preformed on the transposed frames.
@@ -32,8 +38,21 @@ At extreme transpositions, harmonics sometimes appeared to go silent. The resynt
 
 \begin{figure}
     \centering
+    \includegraphics[width=\textwidth]{research/results/Coldplay/InferredTranspositions.png}
+    \caption{(Coldplay) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame}
+\end{figure}
+
+
+\begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{research/results/TaylorSwift/InferredTranspositionsGraphs.png}
     \caption{(Taylor Swift) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{research/results/Coldplay/InferredTranspositionsGraphs.png}
+    \caption{(Coldplay) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame}
 \end{figure}
 
 \subsection{Fixing F0}
@@ -56,8 +75,20 @@ Sadly, timbral quality was reduced when F0 was fixed, with the output sounding m
 
 \begin{figure}
     \centering
+    \includegraphics[width=\textwidth]{research/results/Coldplay/FixedF0.png}
+    \caption{(Coldplay) Training dataset and fixed F0 spectrogram frames}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{research/results/TaylorSwift/FixedF0Graphs.png}
     \caption{(Taylor Swift) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{research/results/Coldplay/FixedF0Graphs.png}
+    \caption{(Coldplay) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame}
 \end{figure}
 
 \subsection{Modifying Loudness}
