@@ -183,9 +183,7 @@ Where $i \in (4096, 2048, 1024, 512, 256, 128, 64)$
 
 Further research on top of DDSP relating to vocals has been done for speech synthesis, although not directly designed for music, the paper introduces a slightly different system that modifies the DDSP architecture to more closely match the human voice\cite{SpeechDDSP}. Instead of using an autoencoder, the network uses a series of convolutional neural networks.
 
-The method yields highly accurate results (although it is still noticeable the output has been synthesised). Timbre was accurately measured, though consonants still sounded off. They trained the network so that the filtered noise generator generates consonants, and the harmonic oscillator gives vowels. The convolutional/recurrent structure of the model allows it to pick-up long-term patterns in human speech, for example how certain words are said. The convolutional neural networks are used to train the harmonic and filtered noise generators respectively.
-
-Unfortunately the code used for the model was not available for download, limiting the value of the paper as its findings could not be replicated. It could in theory be reversed engineered though this would take considerable time and effort and is as such beyond the scope of this project. It is also possible that the results were cherry picked from the original as only a limited number of samples were available.
+The method yields highly accurate results (although it is still noticeable the output has been synthesised). Timbre was accurately measured, though consonants still sounded off. Unfortunately the code used for the model was not available for download, limiting the value of the paper as its findings could not be replicated. It could in theory be reversed engineered though this would take considerable time and effort and is as such beyond the scope of this project. It is also possible that the results were cherry picked from the original as only a limited number of samples were available.
 
 \subsection{Singing Voice Synthesis Using DDSP}
 \label{sec:singing_voice_synthesis}

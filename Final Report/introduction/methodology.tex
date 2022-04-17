@@ -14,8 +14,8 @@ The standardised process is based on good principles in machine learning, along 
               \item Spectral leakage due to inaccuracies in fourier representations
               \item Poor oscillatory output representation that does not sound natural
           \end{itemize}
-    \item To analyse the tonal quality Loudness and Fundamental Frequency should be compared using L1 - the sum of the absolute differences between the predicted and actual values when comparing output values to the training data. This is a good measure of the quality of the output.
-    \item Modular systems shall be evaluated positively, due to the fact that their individual elements can be built on seperately, and the whole system acts less like a 'Black Box'.
+    \item To analyse the tonal quality a statistical method of loss must be defined and used
+    \item Modular systems shall be evaluated positively, due to the fact that their individual elements can be built on separately, and the whole system acts less like a 'Black Box'.
     \item Any discarded information eg phase that has been discarded during encoding (eg. phase) that could be presented to the network shall also be penalised. It is hypothesized that this information could be used to improve the quality of the output.
     \item Model architectures that are specific to music and audio signal processing are preferred, as opposed to more general machine learning problems. It was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
 \end{itemize}
@@ -34,7 +34,7 @@ For each artist two different albums were picked of similar musical style to ens
 
 The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices, any songs with cover artists or different singers to the main voice were removed. Each dataset was made to be approximately of similar length, this was done to ensure similar levels of generalisation between the two models.
 
-Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pretrained model seperated the vocal track from the instrumentals for each song in the album.
+Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pretrained model separated the vocal track from the instrumentals for each song in the album.
 
 The albums were picked so that it only had one voice on the vocal track to avoid any problems of the model mixing voices.
 
@@ -47,7 +47,9 @@ Following training of both models, the models underwent several inferencing test
 \begin{enumerate}
     \item The models were inferenced on the same dataset that was used for training to test the models acruaccy at predicting the training dataset.
     \item A pitch transposition was attempted. Vocal samples from the original datasret were transposed, up an and down an octave to see how the model would perform on unseen vocal ranges.
-    \item Two different vocal soundtrack, one matching the vocal style of each dataset, was passed into the trained model. Each vocal track seperated similarly using Spleeter and had pitch, amplitude and timbre levels comparable to those of the original dataset. It was then seen if could recreate the vocal track in the style of the trained vocal artist. 
+    \item A mono-pitch inference test was condicted to determine the models ability at producing a single pitch
+    \item A log-linear loudness inference was attempted to gauge the models ability at modifying the loudness of the vocal samples.
+    \item For the best dataset, 2 unseen vocal tracks of different artists were put into the model to see how the model would perform on unseen vocal samples of different artists in order top gauge the models generalisation ability to other artists and unseen voice types.
 \end{enumerate}
 
-Finally, in light of the experimental results, recommendations for future work in the field as a whole are made.
+Finally, in light of the experimental results and other accademic research, recommendations for future work in the field as a whole are made.

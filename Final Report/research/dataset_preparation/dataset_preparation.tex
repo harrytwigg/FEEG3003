@@ -4,7 +4,7 @@
 
 Following the selection of the 2 albums for each artist and removal of any songs where additional vocal artists to the main vocalist featured were removed, all songs were passed through the pretrained Spleeter model\cite{SpleeterPip}\cite{SpleeterPip}. This pre-trained model is capable of carrying out source separation of instrumental and music tracks. This was essential as the training dataset must not contain any instrumentals.
 
-The model outputted 2 seperate tracks for each song, one representing instrumentals and one vocals. The instrumental tracks were discarded. The remaining vocal tracks were then preprocessed.
+The model outputted 2 separate tracks for each song, one representing instrumentals and one vocals. The instrumental tracks were discarded. The remaining vocal tracks were then preprocessed.
 
 Using Spleeter to split existing songs with instrumental components opened up the possability of using a greater number of songs, something the original singing DDPS paper's authors did not consider. Their largest single voice dataset had a preprocessed compressed size of ~70Mb, whereas the preprocessed datasets used in this paper had a size approximately 10 times that at ~700Mb, whilst still being based on a single vocal artist, style of music, and vocals only tracks. It was hoped using a larger training dataset would allow for less over-fitting and better generalisation.
 
