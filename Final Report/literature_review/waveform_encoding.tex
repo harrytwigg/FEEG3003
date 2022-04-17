@@ -26,7 +26,7 @@ Several independent VQ-VAE Levels are used retaining different levels of resolut
 
 Each level is then trained using sparse transformer-based models learn the probability distribution of the VQ-VAE levels that unsampled each previous level. The model can be conditioned on lyrics genre, artist. After training, new songs can be unsampled through each level of VQ-VAEs to give new raw music audio.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/vq-vae.png}
     \caption{VQ-VAE Encoding and Compression: Successive levels further compress the raw audio data, discarding irrelevant information}

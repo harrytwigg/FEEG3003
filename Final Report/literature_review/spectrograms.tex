@@ -14,7 +14,7 @@ Mel Spectrogrograsm are an adaptation of the spectrograms more suited to  sounds
 
 This enables machine learning models to learn how to produce audio sequences that sound more natural to a human listener.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/MelSpectrogram.png}
     \caption{An example of a  Mel Spectrogram showing the amplitude of different frequencies in a sound over time\cite{GettingToKnowTheMelSpectrogram}}
@@ -37,7 +37,7 @@ Firstly, phase appears to be random making it difficult to distinguish meaningfu
 
 Secondly phase is a cyclic quality, cyclic qualities are harder to interpret than non-cyclic qualities as they are not continuous. One paper called GANSynth\cite{GANSynth} which attempts to overcome this problem. In this paper the difference in phase between individual timesteps of the spectrogram is calculated and $2\pi$ adjustments are made for when the phase wraps around. This difference in phase is called the instantaneous frequency and provides far more informative information than just the phase. Instantaneous frequency over harmonics for instance is expected to be constant.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/PhaseAdjustment.png}
     \caption{Unrwapping Spectrogram Phase: An illustration from the GANSynth paper of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite{GANSynth}}
