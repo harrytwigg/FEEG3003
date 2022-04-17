@@ -1,4 +1,4 @@
-# Comparing Audio Decompositions for Vocal Sound Synthesis with Deep Neural Networks
+# What is the best deep learning architecture for synthesizing realistic musical vocals?
 
 ## An Investigation in Using DDSP to Learn and Synthesize Vocal Features
 
