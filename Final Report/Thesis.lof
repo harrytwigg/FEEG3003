@@ -4,23 +4,23 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces VQ-VAE Encoding and Compression: Successive levels further compress the raw audio data, discarding irrelevant information\relax }}{7}{figure.caption.4}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces An example of a Mel Spectrogram showing the amplitude of different frequencies in a sound over time\cite {GettingToKnowTheMelSpectrogram}\relax }}{9}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Unrwapping Spectrogram Phase: An illustration from the GANSynth paper of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite {GANSynth}\relax }}{9}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Unrwapping Spectrogram Phase: An illustration from the GANSynth paper of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite {GANSynth}\relax }}{10}{figure.caption.6}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces The DDSP Model Architecture: The model setup from the original paper\cite {OriginalDDSP} standardised machine learning components are shown in red, the latent varibles in green and the synthesizers in yellow.\relax }}{14}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Modified DDSP Decoder and MLP\cite {SingingDDSP}\relax }}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Modified DDSP Decoder and MLP\cite {SingingDDSP}\relax }}{17}{figure.caption.10}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces TODO: FINISH PUT TABLE HERE - Songs and albums going into each training dataset\relax }}{19}{figure.caption.11}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Dataset Pre-processing: Spectrogram plot of a random 4 second sample from one of the datasets and its accomanying F0, F0 Confidence and Amplitude characteristics over time throughout the sample\relax }}{21}{figure.caption.12}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Training steps per second over the 200,000 training epochs\relax }}{22}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Training Spectral Losses: Losses over the 200,000 epochs of training both models, using the spectral loss function defined in \nameref {sec:loss_measure}\relax }}{22}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces (Taylor Swift) Original and resynthesized frames without latent modification\relax }}{23}{figure.caption.15}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces (Coldplay) Original and resynthesized frames without latent modification\relax }}{23}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces (Taylor Swift) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame\relax }}{24}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces (Coldplay) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame\relax }}{25}{figure.caption.18}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces (Taylor Swift) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame\relax }}{25}{figure.caption.19}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces (Coldplay) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame\relax }}{26}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces (Taylor Swift) Training dataset and fixed F0 spectrogram frames\relax }}{27}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces (Coldplay) Training dataset and fixed F0 spectrogram frames\relax }}{27}{figure.caption.22}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces (Taylor Swift) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame\relax }}{28}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.14}{\ignorespaces (Coldplay) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame\relax }}{28}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Training steps per second over the 200,000 training epochs\relax }}{23}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Training Spectral Losses: Losses over the 200,000 epochs of training both models, using the spectral loss function defined in \nameref {sec:loss_measure}\relax }}{23}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces (Taylor Swift) Original and resynthesized frames without latent modification\relax }}{24}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces (Coldplay) Original and resynthesized frames without latent modification\relax }}{25}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces (Taylor Swift) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame\relax }}{26}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces (Coldplay) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame\relax }}{27}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces (Taylor Swift) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame\relax }}{27}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces (Coldplay) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame\relax }}{28}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces (Taylor Swift) Training dataset and fixed F0 spectrogram frames\relax }}{29}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces (Coldplay) Training dataset and fixed F0 spectrogram frames\relax }}{29}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces (Taylor Swift) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame\relax }}{30}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces (Coldplay) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame\relax }}{30}{figure.caption.24}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

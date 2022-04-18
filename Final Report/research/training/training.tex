@@ -8,13 +8,13 @@ The model settings were kept the same as in \nameref{sec:singing_voice_synthesis
 
 Each model was trained for 200,000 epochs; the training time was approximately 2.9 epochs per second or 5.2 epochs per second, depending on the GPU. Total training time was approximately 20 hours per model.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{research/training/StepsPerSecond.png}
     \caption{Training steps per second over the 200,000 training epochs}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{research/training/TrainingSpectralLosses.png}
     \caption{Training Spectral Losses: Losses over the 200,000 epochs of training both models, using the spectral loss function defined in \nameref{sec:loss_measure}}

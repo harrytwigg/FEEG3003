@@ -10,7 +10,7 @@ A spectrogram is a graphical plot of the decomposition of sound using the \acrfu
 
 Mel Spectrograms are an adaptation of the spectrograms more suited to sounds intended to be heard by humans. Mel Spectrograms have amplitude/sound intensity adjusted along a logarithmic scale such that graphical distances between frequencies sound the same distance as human hearing would detect them to be. This adjustment enables machine learning models to learn how to produce audio sequences that sound more natural to a human listener.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/MelSpectrogram.png}
     \caption{An example of a  Mel Spectrogram showing the amplitude of different frequencies in a sound over time\cite{GettingToKnowTheMelSpectrogram}}
@@ -33,7 +33,7 @@ Firstly, the phase spectrogram appears random, making it challenging to distingu
 
 Secondly, the spectrogram phase is a cyclic quality. Cyclic qualities are more challenging to interpret than non-cyclic qualities as they are not continuous. One paper called GANSynth\cite{GANSynth} overcomes this problem by calculating the phase difference between individual timesteps of a spectrogram and making $2\pi$  adjustments for when the phase wraps around. This phase difference is called the instantaneous frequency and provides far more informative information than the raw phase. Instantaneous frequency over harmonics, for instance, is expected to be constant.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/PhaseAdjustment.png}
     \caption{Unrwapping Spectrogram Phase: An illustration from the GANSynth paper of how the phase of a spectrogram is adjusted to make it more interpretable to a neural network\cite{GANSynth}}
