@@ -1,16 +1,14 @@
 \section{Raw Waveform Based Encoding}
 
-A subset of deep learning research has focused on waveform-based methods and encoding music audio directly as raw timeseries audio data.
+A subset of deep learning research has focused on waveform-based methods and encoding music audio directly as raw time-series audio data.
 
-There are many potential benefits to crunching low level audio data. Firstly information that is discarded from spectrograms eg phase is not lost.
+There are many potential benefits to crunching low-level audio data. Firstly, information discarded from spectrograms, e.g. phase, is not lost. Secondly, using raw audio does not limit the number and depth of features that can be learned, meaning such a model could potentially learn the intricate features of the human voice.
 
-Secondly, using raw audio does not limit the number of and depth of features that can be learned. Meaning such a model could potentially learn the intricate features of the human voice.
-
-One of the problems of waveform based models is their lack of long term structure. This is caused by the sampling period being so short and the many thousands of samples that make up one continuous raw audio track\cite{JukeboxWebsite}.
+One of the problems of waveform based models is their lack of long term structure; this is caused by the sampling period being so short and the many thousands of samples that make up one continuous raw audio track\cite{JukeboxWebsite}.
 
 \subsection{Jukebox}
 
-The most influential model employing waveforms for music sound synthesis is called Jukebox\cite{Jukebox}. The Jukebox model is a deep neural network that learns to reconstruct the vocal (and instrumental features) features of a song from the raw audio data.
+The most influential model employing waveforms for music sound synthesis is called Jukebox\cite{Jukebox}. The Jukebox model is a deep neural network that learns to reconstruct music's vocal (and instrumental features) features from the raw audio data.
 
 What is significant about the paper is its method of attempting to overcome the lack of long term structure. An autoencoder compresses input raw audio at the Nyquist Frequency to a discrete space using a technique called Vector-Quantized Variational Autoencoders (VQ-VAE)\cite{Jukebox}.
 
@@ -22,9 +20,9 @@ What is significant about the paper is its method of attempting to overcome the 
 }
 \vspace{0.5cm}
 
-Several independent VQ-VAE Levels are used retaining different levels of resolution up to 128x encoding. Lower levels capture local music structures e.g. timbre and local pitch, whereas higher levels capture higher level long range music structure features.
+Several independent VQ-VAE Levels are used, retaining different levels of resolution up to 128x encoding. Lower levels capture local music structures, e.g. timbre and local pitch, whereas higher levels capture higher-level long-range music structure features.
 
-Each level is then trained using sparse transformer-based models learn the probability distribution of the VQ-VAE levels that unsampled each previous level. The model can be conditioned on lyrics genre, artist. After training, new songs can be unsampled through each level of VQ-VAEs to give new raw music audio.
+Each level is then trained using sparse transformer-based models to learn the probability distribution of the VQ-VAE at each level of resolution.
 
 \begin{figure}[!ht]
     \centering
@@ -33,13 +31,10 @@ Each level is then trained using sparse transformer-based models learn the proba
     \label{fig:jukebox_example}
 \end{figure}
 
-\subsection{Jukebox Evaluation}
+\subsection{Critical Evaluation}
 
-Although local musical coherence, timbre among other things is good, longer term musical structure is not fully present. The upsampling process also introduces significant noise into the final audio which sounds jarring to the listener.
+The Jukebox model can be conditioned on lyrics, genre, and artist. After training, new songs can be upsampled through each level of VQ-VAEs to give new raw music audio. Outputted music features singing, instrumentals and some resemblance to a long-term structure. Music vocals are also synthesised and sung by the model on its own accord.
 
-Another big disadvantage is the lack of parallel sampling and autoregressive nature of the model meaning that it takes multiple hours to produce one minute of music. This limits its broad applicability as its prohibitively expensive.
+Although local musical coherence and timbre are good in Jukebox, the longer-term musical structure is not fully present. The upsampling process also introduces significant noise into the final audio, which sounds jarring to the listener. Another significant disadvantage is the lack of parallel sampling and the autoregressive nature of the model, meaning it takes multiple hours to produce one minute of music. This slowness limits its broad applicability as it is prohibitively expensive and prevents real-time applications. The model also functions much like a black box, preventing us from gaining any critical information about how it is synthesising its audio. This further limits its potential uses as we cannot independently modify model parameters such as the pitch and timbre of generated music. Finally, waveform based models require significant training data to train the model and extract relevant musical features accurately.
 
-The model also functions much like a black box, preventing us from gaining any important information into how it is synthesising its audio. This further limits its potential uses as we cannot independently modify model parameters such as pitch and timbre of generated music.
-
-Finally waveform based models require significant amounts of training data in order to accurately train the model and extract relevant musical features.
-
+Sadly the lack of real-time features and prohibitively large model size from using raw time-series based encoding. As per the technical requirements, any real-world application needs to be real-time or near-realtime.
