@@ -40,15 +40,14 @@ At extreme transpositions, harmonics sometimes appeared to go silent. The resynt
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{research/results/Coldplay/InferredTranspositions.png}
-    \caption{(Coldplay) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame}
+    \includegraphics[width=\textwidth]{research/results/TaylorSwift/InferredTranspositionsGraphs.png}
+    \caption{(Taylor Swift) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame}
 \end{figure}
-
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{research/results/TaylorSwift/InferredTranspositionsGraphs.png}
-    \caption{(Taylor Swift) Latent F0 and loudness features for various octave transpositions realative to F0 over timesteps throughout the frame}
+    \includegraphics[width=\textwidth]{research/results/Coldplay/InferredTranspositions.png}
+    \caption{(Coldplay) Inferred spectrogram frames at various octave transpositions realative to F0 at a certain timegrame in the original frame}
 \end{figure}
 
 \begin{figure}[H]
@@ -77,14 +76,14 @@ Sadly, timbral quality was reduced when F0 was fixed, with the output sounding m
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{research/results/Coldplay/FixedF0.png}
-    \caption{(Coldplay) Training dataset and fixed F0 spectrogram frames}
+    \includegraphics[width=\textwidth]{research/results/TaylorSwift/FixedF0Graphs.png}
+    \caption{(Taylor Swift) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{research/results/TaylorSwift/FixedF0Graphs.png}
-    \caption{(Taylor Swift) Latent information on loudness and F0 over timesteps throughout the frame. The mean F0 was used to fix F0 throughout the frame}
+    \includegraphics[width=\textwidth]{research/results/Coldplay/FixedF0.png}
+    \caption{(Coldplay) Training dataset and fixed F0 spectrogram frames}
 \end{figure}
 
 \begin{figure}[H]
@@ -95,14 +94,18 @@ Sadly, timbral quality was reduced when F0 was fixed, with the output sounding m
 
 \subsection{Modifying Loudness}
 
-Unfortunately modification of the loudness latent vector did not alter the loudness of any inferred frames. This could be caused by the decoder learning to ignore the loudness latent vector as it seemed insignificant. Alternatively there may be some archtectural issue with modified decoder as the DDSP library's authors significantly redesigned the loudness and power and calculations with the version 3 release, this is since the release of the Singing DDSP decoder that used ddsp version 1. The discovery of which is beyond the scope of this paper.
+Unfortunately modification of the loudness latent vector did not alter the loudness of any inferred frames. This could be caused by the decoder learning to ignore the loudness latent vector as it seemed insignificant.
+
+Alternatively there may be some archtectural issue with modified decoder as the DDSP library's authors significantly redesigned the loudness and power and calculations with the version 3 release, this is since the release of the Singing DDSP decoder that used DDSP version 1. The discovery of which is beyond the scope of this paper.
+
+\subsection{Timbral Transfer}
 
 \subsection{General Problems}
 
 Along with the loudness perception problem, there were others that were ecounterred during all inferencing tests:
 
 \begin{enumerate}
-    \item At low loudness levels, the CREPE model was not able to accurately detect pitch of the audio sample, this caused the fudamental ferquency to jump around, sometimes appearing to jump up an octave. This is evidenced in the Coldplay Frames that aqll experience this problem. A potential solution that the DDSP authors suggested was muting sections of track where CREPE had low confidence in it's prediction. This was unable to work here due to the problems discussed around the loudness latent.
+    \item At low loudness levels, the CREPE model was not able to accurately detect pitch of the audio sample, this caused the fudamental ferquency to jump around, sometimes appearing to jump up an octave. This made the output sound jarring. This is evidenced in the Coldplay Frames that all experience this problem. A potential solution that the DDSP authors suggested was muting sections of track where CREPE had low confidence in it's prediction. This was unable to work here due to the problems discussed around the loudness latent.
     \item The model failed to learn specific timbre related to the trained artist, this was respecially appearent during the fixed F0 test when the output sounded almost robotic. This is in part expected as the DDSP archtecture was not designed with timbre transfer directly in mind.
-    \item When transferring timbre from another artist, the inferred sample sounded like the voice of the other artist more than it did that of the training dataset artist. This could however just be attributed to the generalisation of the model to resynthesizing the specific timbres derived from the noise characteristics of a test frame.
+    \item Similarly, when transferring timbre from another artist, the inferred sample sounded like the voice of the other artist more than it did that of the training dataset artist. This could however just be attributed to the generalisation of the model to resynthesizing the specific timbres derived from the noise characteristics of a test frame.
 \end{enumerate}
