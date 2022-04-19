@@ -40,15 +40,15 @@ Each dataset was then trained using the DDSP library\cite{DDSPPip} and code adap
 
 \subsection{DDSP Inferencing}
 
-Following the training of both models, the models underwent several inferencing tests designed to evaluate the models' encoding of the latent characteristics.
+Following the training of both models, the models underwent several inferencing tests designed to evaluate the models's encoding of the latent characteristics, and to evaluate the flexability of the DDSP architecture in a variety of different situations.
 
 \begin{enumerate}
     \item The models were inferred on the same dataset used for training to test the model's accuracy in predicting frames from the training dataset.
     \item A pitch transposition was attempted. Vocal samples from the original dataset were transposed up and down an octave to see how the model would perform on unseen vocal ranges.
     \item A mono-pitch inference test was conducted to determine the model's ability at producing a single pitch.
     \item A log-linear loudness inference was attempted to gauge the model's ability to modify the loudness of the vocal samples.
-    \item For the best model timbral transfer tests were conducted, the best was determined by performance in previous inferencing tests. Tests were conducted on an unseen male and female voice to determine performance with different voice types.
-    \item Finally, an inference test on a track with instrumentals was conducted to observe the 
+    \item For the best model timbral transfer tests were conducted, the best was determined by performance in previous inferencing tests. Tests were conducted on an unseen male and female voice to determine performance with different voice types. The test frames were separated similarly to the test datasets using Spleeter. In the tests, all latents remained unmodified to isolate the effect of changing the vocal artist.
+    \item Again on the best model an inference test on a track with instrumentals was conducted to observe the models performance on unseen instrumentals within a track. Again, all latents remained unmodified to isoalate any effect of the instrumentals. The track was the female voice artist from the timbral trasnfer test. The same timestamped frame was used so the output between the inferred frames for both tracks could be compared.
 \end{enumerate}
 
 Finally, in light of the experimental results and other academic research, recommendations for future work in the field are made.
