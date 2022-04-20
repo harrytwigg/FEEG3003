@@ -8,12 +8,14 @@ It could be said that despite the failure of the models in this paper to trasnfe
 
 Further applicability previously not explored in the DDSP paper, such as vocal source separation has also been demonstrated. This is due to the fact that the model had successfully learned to infer the vocal source from the audio signal.
 
-DDSP will have a future in synthesing realistic music vocals and could be used for further accademic or artistic purposes. Its interpretable and modular nature will allow it to be integrated into other applications.
+DDSP is already one of the best deep learning archtectures for synthesizing realistic music vocals. It will likely be used for further accademic or artistic purposes. Its interpretable and modular nature will allow it to be integrated into other applications. Further research into the alternatives, some of which were presented in this paper e.g. \nameref{sec:jukebox} is however required to evaluate if DDSP is the best.
 
 \section{Reccomendations}
 
 There are however many areas of improvement that can be made to the model. Firstly, accurate loudness estimation must be implemented, this is a feature of the original DDSP model\cite{OriginalDDSP} that appears to not be working with the variation applied to singing. This may require an extensive review of the decoder to ensure it is programmed correctly. If it is found to be working, then the loss function may have to be altered to bias the model towards the amplitude latent vector.
 
-The timbral quality although good could be better, this could be improved by increasing the number of internal parameters and increasing the resolution of spectrogtrams used. This change would increase model size significantly requiring its parellizaiton and training on multiple GPUs.
+The timbral quality although good could be better, this could be improved by increasing the number of internal parameters and increasing the resolution of spectrogtrams used. This change would increase model size significantly requiring its parralelisation and training on multiple GPUs. Timbral transfer was also demonstrated in the original DDSP paper but sadly did not work for the models trialed in this paper. Future work could pertain to addressing this discrepancy.
 
 Future works could focus on implementing DDSP with other technologies and machine learning models. A DDSP based model could be combined with an attention based symbolic transformer model, natural langauge model such as GPT-3\cite{GPT3} and text to speech systems to provide an end to end program that could generate a whole song. The symbolic transformer model could generate long term features such as F0 over time (in the form of midi notation) as well as other long term musical features and characteristics. The natural language model could then be tasked with generating lyrics to match the timings of the generated music. These could be synthesized using text to speech and F0 or other characteristics modified by DDSP.
+
+As suggested by previous work\cite{SingingDDSP}, native phoenetic conditioning could be implemented into DDSP, enabling modification of the underlying words and phoenetics as latents similarly to F0 or loudness. This would enable further expressability in the archtecture and would avoid the need for any other text to speech model.
