@@ -18,7 +18,7 @@
 *.ind
 *.log
 *.out
-*.pdf
+Thesis.pdf
 *.ps
 *.sav
 *.swp

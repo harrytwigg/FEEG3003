@@ -104,7 +104,20 @@ Alternatively there may be some archtectural issue with modified decoder as the 
 
 The Taylor Swift model was selected for this due to its greater perceived performance in the pitch transfer tests. For both male and female voice tests, vocals were successfully synthesized and it was clear what words were being pronounced. Pitch was also accurately modelled for both cases. Success outside of the training set suggests that the model had successfully been generalised and had learned the underly phonemes of human speech from spectrograms.
 
-Timbral transfer did not occur sadly, with each inferred frame sounding similar to the source artist. This suggests that the model had learned to transfer timbre from the original vocal frame to the synthesised frame. Timbral quality was also reduced, sounding more unnatural, suggesting that perfect generalisation was not fully achieved.
+For the timbral transfer, the following songs were used:
+
+\vspace{0.5cm}
+\framebox[1.1\width]{
+    \begin{minipage}{0.8\textwidth}
+        \begin{itemize}
+            \item \textbf{(Male Voice) Lewis Capaldi - \textit{Someone You Loved}}
+            \item \textbf{(Female Voice) Birdy - \textit{Deep End}}
+        \end{itemize}
+    \end{minipage}
+}
+\vspace{0.5cm}
+
+Timbral transfer did not occur sadly, with each inferred frame sounding similar to the source artist. This suggests that the model had learned to transfer timbre from the original vocal frame to the synthesised frame. Timbral quality was also reduced, sounding more unnatural, suggesting that perfect generalisation was not fully achieved. 
 
 \begin{figure}[H]
     \centering
@@ -120,13 +133,13 @@ Timbral transfer did not occur sadly, with each inferred frame sounding similar 
 
 \subsection{Inference with Instrumentals}
 
-The Taylor Swift model was then used to infer a frame featuring the instrumental version of the song Deep End.
+The Taylor Swift model was then used to infer a frame featuring the instrumental and vocal version of the song Deep End (ie the original song before passing through the Spleeter model).
 
-The model managed to extract vocals from the track with instrumentals. Even more significant, there was no leakage of instrumentals in the inferred frame, suggesting that the model had isolated features unique to the human voice as opposed to more general instrumental features.
+The DDSP model managed to extract vocals from the track with instrumentals. Even more significant, there was no leakage of instrumentals in the inferred frame, suggesting that the model had isolated features unique to the human voice as opposed to more general noise features.
 
-This results shows that the model is very flexible, being able to carry out soruce separation tasks similar to the Spleeter library\cite{Spleeter}.
+This results shows that the model is very flexible, being able to carry out soruce separation tasks similar to the Spleeter library\cite{Spleeter}. This is a result not demonstrate in the previous DDSP papers.
 
-The inferred frames from the tracks with and without instrumentals sounded similar, though F0 estimation in the frame with instrumentals could be better, this is likely a limitaiton of using CREEPE pitch estimation on a track with multiple different parts simultaneously.
+The inferred frames from the tracks with and without instrumentals sounded similar, though F0 estimation in the frame with instrumentals could be better, this is likely a limitation of using CREEPE pitch estimation on a track with multiple different parts simultaneously.
 
 \begin{figure}[H]
     \centering
@@ -140,6 +153,8 @@ Along with the loudness perception problem, there were others that were ecounter
 
 \begin{enumerate}
     \item At low loudness levels, the CREPE model was not able to accurately detect pitch of the audio sample, this caused the fudamental ferquency to jump around, sometimes appearing to jump up an octave. This made the output sound jarring. This is evidenced in the Coldplay Frames that all experience this problem. A potential solution that the DDSP authors suggested was muting sections of track where CREPE had low confidence in it's prediction. This was unable to work here due to the problems discussed around the loudness latent.
-    \item The model failed to learn specific timbre related to the trained artist, this was respecially appearent during the fixed F0 test when the output sounded almost robotic. This is in part expected as the DDSP archtecture was not designed with timbre transfer directly in mind.
+    \item The models failed to learn specific timbre related to the trained artist, this was respecially appearent during the fixed F0 test when the output sounded almost robotic. This is in part expected as the DDSP archtecture was not designed with timbre transfer directly in mind.
     \item Similarly, when transferring timbre from another artist, the inferred sample sounded like the voice of the other artist more than it did that of the training dataset artist. This could however just be attributed to the generalisation of the model to resynthesizing the specific timbres derived from the noise characteristics of a test frame.
 \end{enumerate}
+
+The failure to learn timbre as demonstrated throughout all the tests may be the price that was paid for the ability of the model to generalise to being able to understand, interpret and resynthesize any voice.
