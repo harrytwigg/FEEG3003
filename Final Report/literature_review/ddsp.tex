@@ -53,7 +53,7 @@ Defining the highest harmonic in this way ensures that the harmonic oscillator c
 
 The initial phase $\phi_0(k)$ can be random, fixed or learned\cite{OriginalDDSP}.
 
-The oscillators operate at the sample rate; however, the neural network is trained at a lower rate. DDSP employs bilinear interpolation to increase the sample rate from that of the neural network and smoothing to prevent artefacts.
+DDSP employs bilinear interpolation upon the fundamental frequency to increase the sample rate from that of the neural network and smoothing to prevent artefacts. Bilinear interpolation is necessary as the neural network is trained at a lower sample rate than the original signal whereas oscillators operate at the original sample rate.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
@@ -120,19 +120,19 @@ The filtered noise synthesiser can generate many different noise patterns that a
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{literature_review/DDSPArchitecture.png}
-    \caption{The DDSP Model Architecture: The model setup from the original paper\cite{OriginalDDSP} standardised machine learning components are shown in red, the latent varibles in green and the synthesizers in yellow.}
+    \caption{The DDSP Model Architecture: The model setup courtesy of a DDSP paper\cite{SingingDDSP}. Standardised machine learning components are shown in red, the latent variables in green and the synthesizers in yellow. Note the feed-forwarding of F0 bypassing the decoder to directly control the harmonic oscillators.}
     \label{fig:ddsp_model_setup}
 \end{figure}
 
-The harmonic oscillators and filtered noise are combined to produce the synthesised output signal in what is known as the Harmonic plus Noise model. The combined output can also be passed through additional modules to produce different types of sounds, for example, a reverberation module to accurately model the acoustic characteristics of a string instrument; this is, however, beyond the scope of this paper.
+The harmonic oscillators and filtered noise are combined to produce the synthesised output signal in what is known as the Harmonic plus Noise model. The combined output can also be passed through additional modules to produce different types of sounds, for example, a reverberation module to accurately model the acoustic characteristics of a string instrument; this is, however, beyond the scope of this paper. No reverb or additional modules are included in this thesis.
 
-The initial DDSP model\cite{OriginalDDSP} employed a modified autoencoder decoder setup where the autoencoder was trained to minimise reconstruction loss in an outputted synthesised audio. Training data is fed into the encoder in the form of Mel-spectrogram images. The autoencoder attempts to extract information from the input signal. Residual information (Z) and F0, the fundamental frequency, are extracted using an encoder in the standard model. Loudness is statistically determined outside of the encoder.
+The initial DDSP model\cite{OriginalDDSP} employed a modified autoencoder decoder setup where the autoencoder was trained to minimise reconstruction loss in an outputted synthesised audio. Training data is fed into the encoder in the form of Mel-spectrogram images. The autoencoder attempts to extract information from the input signal. F0 is directly fed into the harmonic oscillators as making them learn to reproduce this would be unnecessary.
 
-Because loudness can be statistically determined from a spectrogram, making an encoder learn this would be inefficient.
+A further latent quality called Z is extracted from the output of the encoder representing the outputs of the encoder, this cannot be modified, it is fed directly into the decoder. The original DDSP paper demonstrated that timbral information was encoded in this latent Z, enabling timbral transfer between various musical instruments to be possible.
 
-As all of these quantities are time-dependent, they can be denoted as such: $f(t), l(t), z(t)$.
+Loudness and fundamental frequency, and Z are time-dependent, they can be denoted as such: $f(t), l(t), z(t)$.
 
-However, the DSP architecture is very flexible; therefore, different variations of this autoencoder setup can be used. For example, instead of forcing the encoder to map F0, CREPE can be used to extract the F0 from the input signal.
+F0, the fundamental frequency, can extracted using an encoder in the standard mode. The DSP architecture is however, very flexible. Therefore, different variations of this autoencoder setup can be used. For example, instead of forcing the encoder to map F0, CREPE can be used to extract the F0 from the input signal.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
@@ -142,7 +142,7 @@ However, the DSP architecture is very flexible; therefore, different variations 
 }
 \vspace{0.5cm}
 
-The decoder then uses the F0, Z, and the statistically determined loudness to derive control values for the filtered noise and oscillator synthesisers, learning how to re-synthesise the target-audio track.
+The decoder then uses the F0, latnet Z, and the statistically determined loudness to derive control values for the filtered noise and oscillator synthesisers, learning how to re-synthesise the target-audio track.
 
 The fundamental frequency is, however, additionally fed directly into the synthesisers as it enables the model to respond to frequencies unseen during training\cite{SingingDDSP}.
 
@@ -194,9 +194,17 @@ A new team has conducted attractive work building on top of the initial paper to
 
 The adaptation involved adding \acrfull{MFCC} an additional time-varying form of encoding. The coefficients together make up a \acrfull{MFC}. A Mel-frequency cepstrum (MFC) represents the spectrum of a signal using a non-linear Mel frequency scale.
 
-MFFCs have a long history of use in telecommunications and speech processing\cite{MFCCHistory}. Thus, the original authors hypothesised that this representation of the residual z information would more accurately model the non-linearity of the human voice, thus making a vocal synthesis model more accurate.
+MFFCs have a long history of use in telecommunications and speech processing\cite{MFCCHistory}. Thus, the original authors hypothesised that this representation would more accurately model the non-linearity of the human voice, thus making a vocal synthesis model more accurate.
 
-The modified decoder and MLP can be seen in Figure \ref{fig:singing_decoder_mlp}. An additional MLP layer has been added to the decoder to allow for the MFC to be learned.
+The modified decoder and MLP can be seen in Figure \ref{fig:singing_decoder_mlp}. An additional MLP layer has been added to the decoder to allow for the MFC to be learned. Besides this addition, the DDSP architecture is the same as the original, continuing to rely on the harnonic plus noise model.
+
+\vspace{0.5cm}
+\framebox[1.1\width]{
+    \begin{minipage}{0.8\textwidth}
+        Multilayer Perceptron (MLP) is a feedforward neural network module. MLPs feature a directed graph, meaning that the signal path only goes one way. Each node is also characterised by a non-linear activation function. Here the MLP is used to learn the Mel Frequency Cepstrum and its coefficients.
+    \end{minipage}
+}
+\vspace{0.5cm}
 
 \begin{figure}[H]
     \centering
@@ -223,7 +231,7 @@ A big pro of the method was that proper training on an instrument could be under
 
 Due to the smaller model size, the model can operate with reduced training time and cost, making it more suitable for use in real-world applications and perhaps real-time applications.
 
-Another plus was the interpretable and modular design of the model; individual factors such as timbre, pitch or loudness could be varied whilst keeping the others characteristics constant. This interpretation was possible because the model was conditioned to use pitch and loudness and the underlying residual z values to synthesise the audio.
+Another plus was the interpretable and modular design of the model; individual factors such as pitch or loudness could be varied whilst keeping the others characteristics constant. This interpretation was possible because the model was conditioned to use pitch and loudness to re-synthesise the audio.
 
 Additionally, individual components can be changed, perhaps without rebuilding the whole model. E.g. the spectrum based encoder can be replaced with a midi sourced encoder, with the rest of the model architecture remaining unchanged.
 

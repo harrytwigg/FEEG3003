@@ -1,12 +1,6 @@
 \chapter{Introduction}
 
-Teaching a computer to synthesize music using deep learning-based methods has historically been a difficult task. Music contains thousands of sound features every second in the time domain that are difficult to teach accurately to a neural network. Furthermore, even if a network successfully learns how to interpret musical features, the output of models often sounds fake or jarring to the listener due to inaccurate pitch and timbre representations and a lack of temporal context.
-
-A subset of this topic is vocal sound synthesis using neural networks. This niche pertains to synthesizing singing and speech sounds using deep learning methods. However, this has historically proven more difficult than synthesizing instrumental based music due to the complexity of the human voice, with many different vocal modes and features that are difficult to learn through a neural network.
-
-In this paper, the problem of difficulty surrounding synthesizing the human voice and singing is investigated. A variety of approaches have been proposed to solve this problem, with varying degrees of success, the methods and the results of which are discussed in this paper.
-
-This paper aims to compare the various approaches to vocal sound synthesis (singing), evaluating the merits and limitations of each approach, with the ultimate goal of building on the best of the existing methods further, demonstrating the applicability of the proposed approach.
+Using computerised methods to programatically synthesize music has historically been a difficult problem to solve. Music contains thousands of sound features every second in the time domain that are difficult to teach accurately to a neural network.
 
 Many potential applications would be opened up if a deep learning model could be devised to accurately learn, understand, and synthesize the fundamental features of music. These uses include many potentially artistic and business applications:
 
@@ -18,6 +12,14 @@ Many potential applications would be opened up if a deep learning model could be
     \item Musical remixes of existing songs with different singers.
     \item Potentially brand new forms of artistic expression, with a neural network perhaps able to produce vocal features that are impossible to create naturally.
 \end{itemize}
+
+In recent years, deep learning methods have been applied to this problem, attempting to synthesize musical instrumentals and vocals. Success to date has proven varied. Even if a network successfully learns how to interpret musical features, the output of models often sounds fake or jarring to the listener due to inaccurate pitch and timbre representations and a lack of temporal context.
+
+Regardless, synthesizing musical vocals has to date proven more less successful than synthesizing instrumentals, this is primarily due to the complexity of the human voice. The human voice consists of many different vocal modes and features that are difficult for a neural network to learn.
+
+In this thesis, a variety of existing approaches to synthesizing music using machine learning based methods are first explored. The meritis and limitations of each approach are evaluated in regards to synthesizing musical vocals and as a justification for the selection of DDSP, a novel approach to synthesizing music using deep learning.
+
+DDSP is investigated with the ultimate goal of synthesizing human singing with modifiable latent space parameters (F0 and loudness), and demonstrating its potential to be a viable solution to synthesizing music.
 
 \input{introduction/aims_and_objectives.tex}
 

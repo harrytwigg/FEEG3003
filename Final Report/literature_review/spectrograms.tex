@@ -1,4 +1,5 @@
 \section{Fourier Methods and Spectrograms}
+\label{sec:fourier_methods_and_spectrograms}
 
 Spectrograms have a long history but were first used with machine learning models to synthesise music at the start of the 21st century\cite{NoteOnsetDetection}.
 
@@ -25,7 +26,7 @@ There is no standardised formula for converting frequncy onto the mel logarhthmi
 
 \subsection{Intepreting Phase}
 
-The STFT is a complex function; however, only the magnitude part is currently utilised by most models, and the phase part is discarded. Phase is key to interpreting musical sounds; without it, synthesised sounds can sound unnatural as signal information is discarded.
+The STFT is a complex function; however, only the magnitude part is currently utilised by most models, and the phase part is discarded. Any reconstructed signal cannot have the same phase as the original signal if the phase information is lost. Human hearing is capable of distinguishing between two sounds with the same frequency, but with different phases, meaning that sounds resynthesized without phase can sound unnatural and different to the original, regardless of the frequency.
 
 Success at interpreting the phase spectrogram to date has been limited. As a result, most models discard the phase part of the signal and make models purely off the frequency spectrogram. Discarding the phase is a problem as the phase is a crucial part of spectrogram representation, making the image representation fully convertible back to audio, though it is challenging to work with for several reasons:
 

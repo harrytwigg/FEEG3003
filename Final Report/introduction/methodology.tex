@@ -36,7 +36,7 @@ The albums were picked so that they only had one voice on the vocal track to avo
 
 Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pre-trained model separated the vocal track from the instrumentals for each song in the album. Consequently, large datasets could be easily created featuring a singular vocal track and enabling datasets 10x the size of the paper this work was based on\cite{SingingDDSP}.
 
-Each dataset was then trained using the DDSP library\cite{DDSPPip} and code adapted from a variation of DDSP designed for singing\cite{SingingDDSP}. Model hyperparameters were kept the same as in the Singing DDSP paper\cite{SingingDDSP} as the researchers had demonstrated thorough testing of which hyperparameters were the best. 200,000 epochs were used for each dataset; this was deemed sufficient for this project whilst keeping the training time manageable.
+Two models were then trained using the DDSP library\cite{DDSPPip}, one for for each respective dataset. The code for these were derived from the DDSP Library and a variation of DDSP designed for singing\cite{SingingDDSP}. Model hyperparameters were kept the same as in the Singing DDSP paper\cite{SingingDDSP} as the researchers had demonstrated thorough testing of which hyperparameters were the best. 200,000 epochs were used for each dataset; this was deemed sufficient for this project whilst keeping the training time manageable.
 
 \subsection{DDSP Inferencing}
 
