@@ -1,4 +1,4 @@
-# Using DDSP to learn and synthesize singing with modifiable latent space parameters
+# Using DDSP to learn and synthesize singing with adjustable latent space parameters
 
 Thesis project by Harry Twigg at the Univeristy of Southampton.
 
@@ -8,7 +8,7 @@ Other reports or can be seen in their respective folders.
 
 Results can be found in the folder `results`.
 
-# Project Code
+## Project Code
 
 All experimental research can be seen in the folder `vocal_ddsp`. This contains pre-processing, training and evaluation scripts.
 

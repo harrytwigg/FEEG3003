@@ -1,11 +1,11 @@
 \section{Differentiable Digital Signal Processing}
 \label{section:DDSP}
 
-Differentiable Digital Signal Processors (DDSP) are differentiable versions of traditional digital signal processing elements (such as harmonic oscillators and filtered noise banks) that can be integrated into machine learning models\cite{OriginalDDSP}. They are a relatively novel invention but build on the foundations of traditional spectral encoding and modelling techniques such as Mel-Spectrograms and Fourier transforms. Although they were designed to model musical instruments, they can be extended to the human voice.
+Differentiable Digital Signal Processors (DDSP) are differentiable versions of traditional digital signal processing elements (such as harmonic oscillators and filtered noise banks) that can be integrated into machine learning models\cite{OriginalDDSP}. They are a relatively novel invention but build on the foundations of traditional spectral encoding and modelling techniques such as Mel-Spectrograms and Fourier Transforms. Although they were designed to model musical instruments, they can be extended to the human voice.
 
-The DDSP network is modular and consists of multiple separate feedforward components (featuring a separate encoder and decoder) instead of a single recurrent based network. Information is fed between the encoder and decoder in time-dependent information called latents; these are fundamental frequency and loudness.
+The DDSP network is modular and consists of multiple separate feedforward components (featuring a separate encoder and decoder) instead of a single recurrent based autoencoder network. Information is fed between the encoder and decoder in time-dependent information called latents; these are fundamental frequency and loudness, and Z (the hidden outputs of the encoder).
 
-The model aims to take advantage of what the authors call inductive biases of sound instead of making the model figure out all the features of sound itself. This idea is well validated and is known as the harmonic plus noise model of spectral modelling synthesis\cite{HarmonicPlusNoise}. For example, an instrument's track could have harmonic vibrations at multiples of the fundamental frequency and noise components coming from a white noise source through a series of filter banks that change over time.
+The model aims to take advantage of what the authors call inductive biases of sound instead of making the model figure out all the features of sound itself. This idea is well validated and is known as the harmonic plus noise model of spectral modelling synthesis\cite{HarmonicPlusNoise}. For example, an instrument's track could have harmonic vibrations at multiples of the fundamental frequency (modelled by the harmonic oscillator) and noise components (modelled by the filtered noise bank). Noise is derived from passing white noise through a series of filter banks that change over time).
 
 \subsection{Spectral Modelling Synthesis}
 
@@ -43,7 +43,7 @@ Like actual sound, each harmonic oscillator's frequency $f_k(m)$ is an integer m
     f_k(m) = k \times f_0(n)
 \end{equation}
 
-The highest harmonic should be at the Nyquist frequency, which is half the sample rate or mathematically as:
+The highest harmonic should be at the Nyquist frequency, which is half the sample rate or defined mathematically as:
 
 \begin{equation}
     f_{Nyquist} = N \times f_0(n)
@@ -53,7 +53,7 @@ Defining the highest harmonic in this way ensures that the harmonic oscillator c
 
 The initial phase $\phi_0(k)$ can be random, fixed or learned\cite{OriginalDDSP}.
 
-DDSP employs bilinear interpolation upon the fundamental frequency to increase the sample rate from that of the neural network and smoothing to prevent artefacts. Bilinear interpolation is necessary as the neural network is trained at a lower sample rate than the original signal whereas oscillators operate at the original sample rate.
+DDSP employs bilinear interpolation upon the fundamental frequency to increase the sample rate from the neural network and further smoothing to prevent artefacts. Bilinear interpolation is necessary as the neural network is trained at a lower sample rate than the original signal, whereas oscillators operate at the original sample rate.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
@@ -65,7 +65,7 @@ DDSP employs bilinear interpolation upon the fundamental frequency to increase t
 
 \subsubsection{Filtered Noise}
 
-The filtered noise is a component of the DDSP synthesiser. For example, white noise is filtered by a \acrfull{LTI-FIR} to produce a noise signal. LTV-FIR filters are a type of filter that can vary over time, enabling different noise patterns to be generated at different time steps in the output signal.
+The filtered noise is a DDSP synthesiser component that uses a time-varying filter bank. In this, white noise is filtered by a \acrfull{LTI-FIR} to produce a noise signal. LTV-FIR filters are a type of filter that can vary over time, enabling different noise patterns to be generated at different time steps in the output signal.
 
 Finite impulse response filters consist of mathematical impulse responses, meaning that the filter is of finite duration, enabling the filter to change and, over time, model different stochastic noises in the output signal.
 
@@ -75,9 +75,9 @@ It is worth noting that the noise filter is applied in the frequency domain; thi
 
 The neural network was tasked with predicting frequency domain transfer functions of the filter for every frame of the output signal, denoted as $H_l$\cite{OriginalDDSP}.
 
-For all notations with subscript l, l denotes that the values are for the lth frame of the output signal.
+\textit{For all notations with subscript l, l denotes that the values are for the lth frame of the output signal.}
 
-$H_l$ is in the frequency domain; it shows the filter's frequency response. Even though LTV-FIR filters are not linear time-variant, the network can vary the FIR filter over time, allowing the filter to change over time for modelling different noise patterns.
+$H_l$ is in the frequency domain; it shows the filter's frequency response. Even though LTV-FIR filters are not linear time-variant, the network can vary the FIR filter over time, allowing its output to change over time and permitting different noise patterns to be modelled.
 
 As linear time-invariant filters can be denoted by their impulse response, the frequency response of the filter can be denoted by its impulse response $h$, as shown below:
 
@@ -124,15 +124,15 @@ The filtered noise synthesiser can generate many different noise patterns that a
     \label{fig:ddsp_model_setup}
 \end{figure}
 
-The harmonic oscillators and filtered noise are combined to produce the synthesised output signal in what is known as the Harmonic plus Noise model. The combined output can also be passed through additional modules to produce different types of sounds, for example, a reverberation module to accurately model the acoustic characteristics of a string instrument; this is, however, beyond the scope of this paper. No reverb or additional modules are included in this thesis.
+The harmonic oscillators and filtered noise are combined to produce the synthesised output signal in what is known as the Harmonic plus Noise model. The combined output can also be passed through additional modules to produce different types of sounds, for example, a reverberation module to accurately model the acoustic characteristics of a string instrument; this is, however, beyond the scope of this paper. Therefore, no reverb or additional modules are included in this thesis.
 
 The initial DDSP model\cite{OriginalDDSP} employed a modified autoencoder decoder setup where the autoencoder was trained to minimise reconstruction loss in an outputted synthesised audio. Training data is fed into the encoder in the form of Mel-spectrogram images. The autoencoder attempts to extract information from the input signal. F0 is directly fed into the harmonic oscillators as making them learn to reproduce this would be unnecessary.
 
-A further latent quality called Z is extracted from the output of the encoder representing the outputs of the encoder, this cannot be modified, it is fed directly into the decoder. The original DDSP paper demonstrated that timbral information was encoded in this latent Z, enabling timbral transfer between various musical instruments to be possible.
+A further latent quality called Z is extracted from the output of the encoder representing the outputs of the encoder; this cannot be modified. Instead, it is fed directly into the decoder. The original DDSP paper demonstrated that timbral information was encoded in this latent Z, enabling timbral transfer between various musical instruments to be possible.
 
 Loudness and fundamental frequency, and Z are time-dependent, they can be denoted as such: $f(t), l(t), z(t)$.
 
-F0, the fundamental frequency, can extracted using an encoder in the standard mode. The DSP architecture is however, very flexible. Therefore, different variations of this autoencoder setup can be used. For example, instead of forcing the encoder to map F0, CREPE can be used to extract the F0 from the input signal.
+F0, the fundamental frequency, can be extracted using an encoder in the standard model. The DDSP architecture is, however, very flexible. Therefore, different variations of this autoencoder setup can be used. For example, instead of forcing the encoder to map F0, CREPE can be used to extract the F0 from the input signal.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
@@ -142,11 +142,11 @@ F0, the fundamental frequency, can extracted using an encoder in the standard mo
 }
 \vspace{0.5cm}
 
-The decoder then uses the F0, latnet Z, and the statistically determined loudness to derive control values for the filtered noise and oscillator synthesisers, learning how to re-synthesise the target-audio track.
+The decoder then uses the F0, loudness, and Z to derive control values for the filtered noise and oscillator synthesisers, learning how to re-synthesise the target-audio track.
 
 The fundamental frequency is, however, additionally fed directly into the synthesisers as it enables the model to respond to frequencies unseen during training\cite{SingingDDSP}.
 
-Due to the modular design, certain features can be explicitly controlled, for example, room acoustics. Some networks would implicitly pick up room acoustics. This method may introduce unnecessary mode covering, increasing potential training time. The DDSP model explicitly defines room acoustics using a reverberation synthesiser (see Figure \ref{fig:ddsp_model_setup}).
+Another benefit is that certain features can be explicitly controlled due to the modular design, for example, room acoustics. Some networks would implicitly pick up room acoustics. However, this method may introduce unnecessary mode covering, increasing potential training time. The DDSP model explicitly defines room acoustics using a reverberation synthesiser (see Figure \ref{fig:ddsp_model_setup}). However, this is not used in this paper.
 
 \subsection{Measure of Loss}
 \label{sec:loss_measure}
@@ -192,18 +192,18 @@ The method yields highly accurate results (although it is still noticeable that 
 
 A new team has conducted attractive work building on top of the initial paper to produce singing voice synthesis\cite{SingingDDSP} specifically. This paper outlines how the DDSP model can be further altered to interpret better and learn how to model the human voice.
 
-The model in this paper was hoped model consonants using the filtered noise bank, and vowels using the harmonic oscillator module, this is the same approach used later in this thesis.
+The model trained in this paper was hoped to model consonants using the filtered noise bank and vowels using the harmonic oscillator module; this is the same approach used later in this thesis.
 
 The adaptation involved adding \acrfull{MFCC} an additional time-varying form of encoding. The coefficients together make up a \acrfull{MFC}. A Mel-frequency cepstrum (MFC) represents the spectrum of a signal using a non-linear Mel frequency scale.
 
 MFFCs have a long history of use in telecommunications and speech processing\cite{MFCCHistory}. Thus, the original authors hypothesised that this representation would more accurately model the non-linearity of the human voice, thus making a vocal synthesis model more accurate.
 
-The modified decoder and MLP can be seen in Figure \ref{fig:singing_decoder_mlp}. An additional MLP layer has been added to the decoder to allow for the MFC to be learned. Besides this addition, the DDSP architecture is the same as the original, continuing to rely on the harnonic plus noise model.
+The modified decoder and MLP can be seen in Figure \ref{fig:singing_decoder_mlp}. Additional MLP layers have been added to the decoder to allow for MFCs to be learned. Besides this addition, the DDSP architecture is the same as the original, relying on the harmonic plus noise model.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
     \begin{minipage}{0.8\textwidth}
-        Multilayer Perceptron (MLP) is a feedforward neural network module. MLPs feature a directed graph, meaning that the signal path only goes one way. Each node is also characterised by a non-linear activation function. Here the MLP is used to learn the Mel Frequency Cepstrum and its coefficients.
+        Multilayer Perceptron (MLP) is a feedforward neural network module. MLPs feature a directed graph, meaning that the signal path only goes one way. A non-linear activation function also characterises each node. Here the MLP is used to learn the Mel Frequency Cepstrum and its coefficients.
     \end{minipage}
 }
 \vspace{0.5cm}
@@ -215,7 +215,7 @@ The modified decoder and MLP can be seen in Figure \ref{fig:singing_decoder_mlp}
     \label{fig:singing_decoder_mlp}
 \end{figure}
 
-Even on a small dataset, promising results were obtained. Timbre transfer was possible. The performance of the modified decoder exceeded that of the original decoder.
+Even on a small dataset, promising results were obtained. Timbre transfer was possible, and pitch and loudness were also accurately modelled. Furthermore, the performance of the modified decoder exceeded that of the original decoder.
 
 Unfortunately, when the model was forced to recreate unseen sung lyrics, it was unintelligible, appearing to make stuttering noises. The model managed to obtain the correct loudness and pitch of the sound (except for the occasional pitch artefacts) but had no understanding of phonetics (i.e. the specific words that makeup speech). The paper suggests several steps for further work:
 
@@ -227,15 +227,15 @@ Unfortunately, when the model was forced to recreate unseen sung lyrics, it was 
 
 \subsection{DDSP Evaluation}
 
-In the original paper, the DDSP decoder quickly learned how to re-synthesise datasets for a single instrument that sounded like the original audio sample.
+In the original paper, the DDSP decoder quickly learned to re-synthesise datasets for a single instrument that sounded like the original audio sample.
 
 A big pro of the method was that proper training on an instrument could be undertaken with as little as 15 minutes of training audio. Such a small dataset contrasts with models such as Jukebox, which require many hours of training audio as they are far larger models.
 
 Due to the smaller model size, the model can operate with reduced training time and cost, making it more suitable for use in real-world applications and perhaps real-time applications.
 
-Another plus was the interpretable and modular design of the model; individual factors such as pitch or loudness could be varied whilst keeping the others characteristics constant. This interpretation was possible because the model was conditioned to use pitch and loudness to re-synthesise the audio.
+Another plus was the interpretable and modular design of the model; individual factors such as pitch or loudness could be varied whilst keeping the other characteristics constant. This interpretation was possible because the model was conditioned to use pitch and loudness to re-synthesise the audio.
 
-Additionally, individual components can be changed, perhaps without rebuilding the whole model. E.g. the spectrum based encoder can be replaced with a midi sourced encoder, with the rest of the model architecture remaining unchanged.
+Furthermore, individual components can be changed, perhaps without rebuilding the whole model. E.g. the spectrum based encoder can be replaced with a midi sourced encoder, with the rest of the model architecture remaining unchanged.
 
 It was eventually decided that using the DDSP model would be picked for further research due to its modularity, accuracy and ease of use.
 

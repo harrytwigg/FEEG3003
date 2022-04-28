@@ -1,18 +1,18 @@
 \section{Results}
 
-To evaluate the performance of both models, several inferencing tests were conducted to see if the models had learned the latent features correctly.
+Several inferencing tests were conducted to see if the models had learned the latent features correctly to evaluate the models' performance.
 
-All inferencing tests took approximately 0.3 seconds for a 4 minute frame. This is fast enough to enable realtime appllications and is a significant improvement over the Jukebox model.
+All inferencing tests took approximately 0.3 seconds for a 4-minute frame; this is fast enough to enable real-time applications and significantly quicker than the Jukebox model.
 
 \subsection{Recreation from the Training Dataset}
 
-From each training dataset, a random frame was selected and passed through each model, loudness and F0 were kept constant. The results of the inferencing were then compared to the original training dataset.
+A random frame was selected and passed through each model; loudness and F0 were kept constant. The results of the inferencing were then compared to the original training dataset.
 
-Each model was able to successfully recrete original frames, though the Taylor Swift dataset yielded the best results.
+Each model successfully recreated original frames, though the Taylor Swift dataset yielded the best results.
 
-Timbral features were slightly distorted (moreso with the Coldplay dataset) but the overall quality was good and it was easy to tell it was the original singer in both cases. Pitch estimation was highly accurate and in-line with the original pitch. This can be partially attributed to the accruacy of the CREPE pitch detection model\cite{CREPE} and because pitch was directly passed to the harmonic synthesiser.
+Timbral features were slightly distorted (more so with the Coldplay model), but the overall quality was good, and it was easy to tell it was the original singer in both cases. In addition, pitch estimation was highly accurate and in line with the original pitch. Pitch accuracy can be partially attributed to the accuracy of the CREPE pitch detection model\cite{CREPE} and because the pitch was directly passed to the harmonic synthesiser.
 
-A far bigger achievement was the re-synthesis of understandable words from the original frame. The original singing DDSP paper\cite{SingingDDSP} suffered a problem of stuttering when attempting resynthesis as their model was unable to recreate phonemes of the human voice accurately. It is possible that using a far larger datasets has improved the quality of the resynthesis because the models had become more general in their ability to synthesize the human voice. It must be said though that the Coldplay model was harder to understand.
+The resynthesis of understandable words from the original frame was a far more considerable achievement. The original singing DDSP paper\cite{SingingDDSP} suffered a problem of stuttering when attempting resynthesis as their model was unable to recreate phonemes of the human voice accurately. It is possible that using far larger datasets has improved the quality of the resynthesis because the models had become more general in their ability to synthesise the human voice. However, it must be said that the Coldplay model was harder to understand.
 
 \begin{figure}[H]
     \centering
@@ -28,11 +28,11 @@ A far bigger achievement was the re-synthesis of understandable words from the o
 
 \subsection{F0 Pitch Transposition by a fixed octave}
 
-A more advanced inferencing test was then undertaken, the fundamental frequency latent as determined by CREPE was transposed by fixed octaves (-2, -1, 0, 0.5, 1, 2) and the inferencing was re-preformed on the transposed latents. Both models responded to the change in F0 and were able to accurately transpose harmonic pitch by the correct octave amount. At minor transpositions, eg +1 or -1 octave, the resynthesized frame still sounded rather like a human voice. At greater transpositions it sounded like the noise and harmonic components were separate sources and did not constitute one voice.
+A more advanced inferencing test was then undertaken. The fundamental frequency latent as determined by CREPE was transposed by fixed octaves (-2, -1, 0, 0.5, 1, 2), and the inferencing was re-performed on the transposed latents. Both models responded to the change in F0 and could transpose harmonic pitch by the correct octave amount accurately. At minor transpositions, e.g. +1 or -1 octave, the inferred frame still sounded somewhat like a human voice. However, it sounded like the noise, and harmonic components were separate sources at greater transpositions and did not constitute one voice.
 
-As expected, modifying F0 did not change the pitch of the filtered noise at all, confirming that the pitch change had been directly passed to the harmonic synthesiser. This is interesting because we would have expected a little bit of distortion in the original pitch.
+As expected, modifying F0 did not change the pitch of the filtered noise at all, confirming that the pitch change had been directly passed to the harmonic synthesiser. This finding is interesting because we would have expected a little bit of distortion in the original pitch.
 
-At extreme transpositions, harmonics sometimes appeared to go silent. The resynthesis then appeared to sound like a whisper, coming almost entirely out of the filtered noise. whispering occurs when the vocal chords are hold rigid preventing them from vibrating and producing sinusoidal sounds (harmonics in the case of singing). The fact the the models's output sounded like a whisper is a good sign that the model was able to learn and destinguish the noise and harmonics as per the Harmonic Plus Noise Model\cite{HarmonicPlusNoise}\cite{OriginalDDSP}.
+At extreme transpositions, harmonics sometimes appeared to go silent. The resynthesis then sounded like a whisper, coming almost entirely out of the filtered noise. Whispering occurs when the vocal cords are held rigid, preventing them from vibrating and producing sinusoidal sounds (harmonics in the case of singing). The fact that the model's output sounded like a whisper is a good sign that the model was able to learn and distinguish the noise and harmonics as per the Harmonic Plus Noise Model\cite{HarmonicPlusNoise}\cite{OriginalDDSP}.
 
 \begin{figure}[H]
     \centering
@@ -62,13 +62,13 @@ At extreme transpositions, harmonics sometimes appeared to go silent. The resynt
 
 The final pitch related test was fixing F0 to the mean value of F0 throughout the frame to see how the models would perform under unnatural pitch conditions.
 
-Both models were able to fix pitch to the mean value of F0 in the frame. This is clearly heard and can be seen visibily from the inferred spectrogram images where the harmonic components are at lines of constant frequency, unlike the orginial where they clearly vary.
+Both models could fix the pitch to the mean value of F0 in the frame. This fixing is heard and can be seen visibly from the inferred spectrogram images where the harmonic components are at lines of constant frequency, unlike the original where they vary.
 
-Additionally, words were still able to be synthesized and accurately heard, suggesting the model was able to learn the underlying phonemes of speech.
+Additionally, words were still able to be synthesised and accurately heard, suggesting the model was able to learn the underlying phonemes of speech.
 
-This is a very good result mimicking what was founded in the speech DDSP research\cite{SpeechDDSP} (whose code wasn't publicly available). Further experimentations were done to vary the pitch to other amounts eg 100Hz, 500Hz etc. to similar degrees of success, however the quality of results broke down at the extremes. This was evidenced by the harmonic again sounding more like a separate sound with the whispers producing the actual words.
+This result is excellent, mimicking what was founded in the speech DDSP research\cite{SpeechDDSP} (whose code was not publicly available). Further experiments were done with similar degrees of success in varying the pitch to other amounts, e.g. 100Hz and 500Hz. Again, however, the quality of results broke down at the extremes. The breakdown was evidenced by the harmonic again sounding more like a separate sound, with the whispers producing the actual words.
 
-Sadly, timbral quality was reduced when F0 was fixed, with the output sounding more robotic and the original timbre was lost. This is to be expected however as the original harmonic plus noise model was not designed with timbre transfer specifically in mind\cite{OriginalDDSP}.
+Sadly, timbral quality was reduced when F0 was fixed, with the output sounding more robotic and the original timbre being lost. Timbral loss is to be expected, however, as the original harmonic plus noise model was not designed with timbre transfer specifically in mind\cite{OriginalDDSP}.
 
 \begin{figure}[H]
     \centering
@@ -96,13 +96,13 @@ Sadly, timbral quality was reduced when F0 was fixed, with the output sounding m
 
 \subsection{Modifying Loudness}
 
-Unfortunately modification of the loudness latent vector did not alter the loudness of any inferred frames. This could be caused by the decoder learning to ignore the loudness latent vector as it seemed insignificant.
+Unfortunately, modification of the loudness latent vector did not alter the loudness of any inferred frames, and this could be caused by, perhaps, the decoder learning to ignore the latent loudness vector.
 
-Alternatively there may be some archtectural issue with modified decoder as the DDSP library's authors significantly redesigned the loudness and power and calculations with the version 3 release, this is since the release of the Singing DDSP decoder that used DDSP version 1. The discovery of which is beyond the scope of this paper.
+Alternatively, there may be some architectural issues with the modified decoder. For example, the DDSP library's authors significantly redesigned the loudness and power calculations with the version 3 release. Unfortunately, the Singing DDSP decoder used the older version 1. The discovery of any technical problems is beyond the scope of this thesis.
 
 \subsection{Timbral Transfer}
 
-The Taylor Swift model was selected for this due to its greater perceived performance in the pitch transfer tests. For both male and female voice tests, vocals were successfully synthesized and it was clear what words were being pronounced. Pitch was also accurately modelled for both cases. Success outside of the training set suggests that the model had successfully been generalised and had learned the underly phonemes of human speech from spectrograms.
+The Taylor Swift model was selected for the timbral transfer tasks due to its better performance in the pitch transfer tests. For both male and female voice tests, vocals were successfully synthesised, and it was clear what words were being pronounced. Pitch was also accurately modelled for both cases. Success outside of the training set suggests that the model had successfully been generalised and had learned the underlying phonemes of human speech from spectrograms.
 
 For the timbral transfer, the following songs were used:
 
@@ -117,7 +117,7 @@ For the timbral transfer, the following songs were used:
 }
 \vspace{0.5cm}
 
-Timbral transfer did not occur sadly, with each inferred frame sounding similar to the source artist. This suggests that the model had learned to transfer timbre from the original vocal frame to the synthesised frame. Timbral quality was also reduced, sounding more unnatural, suggesting that perfect generalisation was not fully achieved. 
+Sadly, the timbral transfer did not occur, with each inferred frame sounding similar to the source artist and not that of the training dataset. This result suggests that the model had learned to transfer timbre from the original vocal frame to the synthesised frame. Timbral quality was also reduced, sounding more unnatural, suggesting that perfect generalisation was not fully achieved. 
 
 \begin{figure}[H]
     \centering
@@ -133,13 +133,13 @@ Timbral transfer did not occur sadly, with each inferred frame sounding similar 
 
 \subsection{Inference with Instrumentals}
 
-The Taylor Swift model was then used to infer a frame featuring the instrumental and vocal version of the song Deep End (ie the original song before passing through the Spleeter model).
+The Taylor Swift model was then used to infer a frame featuring the instrumental and vocal version of the song Deep End (i.e. the original song before passing through the Spleeter model).
 
-The DDSP model managed to extract vocals from the track with instrumentals. Even more significant, there was no leakage of instrumentals in the inferred frame, suggesting that the model had isolated features unique to the human voice as opposed to more general noise features.
+The DDSP model managed to extract vocals from the track with instrumentals. Even more significant, there was no leakage of instrumentals in the inferred frame, suggesting that the model had isolated features unique to the human voice instead of more general noise features.
 
-This results shows that the model is very flexible, being able to carry out soruce separation tasks similar to the Spleeter library\cite{Spleeter}. This is a result not demonstrate in the previous DDSP papers.
+This result shows that the DDSP model is very flexible, being able to carry out source separation tasks similar to the Spleeter library\cite{Spleeter}; this was not demonstrated in the previous DDSP papers.
 
-The inferred frames from the tracks with and without instrumentals sounded similar, though F0 estimation in the frame with instrumentals could be better, this is likely a limitation of using CREEPE pitch estimation on a track with multiple different parts simultaneously.
+The inferred frames from the tracks with and without instrumentals sounded similar; however, F0 estimation in the frame with instrumentals could be better. Inaccurate F0 estimation is likely a limitation of using CREPE pitch estimation on a track with multiple parts simultaneously.
 
 \begin{figure}[H]
     \centering
@@ -149,12 +149,12 @@ The inferred frames from the tracks with and without instrumentals sounded simil
 
 \subsection{General Problems}
 
-Along with the loudness perception problem, there were others that were ecounterred during all inferencing tests:
+Along with the loudness perception problem, others were encountered during all inferencing tests:
 
 \begin{enumerate}
-    \item At low loudness levels, the CREPE model was not able to accurately detect pitch of the audio sample, this caused the fudamental ferquency to jump around, sometimes appearing to jump up an octave. This made the output sound jarring. This is evidenced in the Coldplay Frames that all experience this problem. A potential solution that the DDSP authors suggested was muting sections of track where CREPE had low confidence in it's prediction. This was unable to work here due to the problems discussed around the loudness latent.
-    \item The models failed to learn specific timbre related to the trained artist, this was respecially appearent during the fixed F0 test when the output sounded almost robotic. This is in part expected as the DDSP archtecture was not designed with timbre transfer directly in mind.
-    \item Similarly, when transferring timbre from another artist, the inferred sample sounded like the voice of the other artist more than it did that of the training dataset artist. This could however just be attributed to the generalisation of the model to resynthesizing the specific timbres derived from the noise characteristics of a test frame.
+    \item At low loudness levels, the CREPE model could not accurately detect the pitch of the audio sample. This lack of accuracy caused the fundamental frequency to jump around, sometimes appearing to jump up or down an octave, making the output sound jarring; this is evidenced in the Coldplay frames that all experience this problem. The DDSP authors suggested a potential solution was muting sections of the track where CREPE had low confidence in its prediction. Sadly, this fix could not work here due to the problems discussed around the loudness latent.
+    \item The models failed to learn specific timbre related to the trained artist; this was especially apparent during the constant F0 test when the output sounded almost robotic. Lack of timbre transfer was foreseen as the DDSP architecture was not directly designed for timbre transfer.
+    \item Similarly, when transferring timbre from another artist, the inferred sample sounded like the voice of the other artist more than it did that of the training dataset artist. However, this result could be attributed to the model's generalisation to synthesise the specific timbres derived from the noise characteristics of a test frame.
 \end{enumerate}
 
-The failure to learn timbre as demonstrated throughout all the tests may be the price that was paid for the ability of the model to generalise to being able to understand, interpret and resynthesize any voice.
+The failure to learn timbre, as demonstrated throughout all the tests, could be the price paid for the ability of the model to understand, interpret, and synthesise any given voice.

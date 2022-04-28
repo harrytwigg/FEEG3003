@@ -2,23 +2,22 @@
 
 Using computers to generate music is a vast field of research dating almost as far back as the invention of computers themselves\cite{Hiller1958Musical}. However, the first research into using machine learning to generate music goes back to the 1980s\cite{ConnectionistComposition}\cite{GradientDescentLearning} with the very first research on symbolic data. These higher-level representations often took the form of MIDI or other musical notation.
 
-Symbolic based models provide a high-level abstraction of the musical piece, meaning that they are easier to train as the model does not have to worry about the physical process to produce sound. However, they are significantly limited to music that can be described in MIDI notation, i.e. vocals and other instruments with unique modes of being played cannot be used. One paper proposed using an autoregressive recurrent neural network to generate symbolic music. Many later works build on Recurrent Neural Networks.
+Symbolic based models provide a high-level abstraction of the musical piece, meaning that they are easier to train as the model does not have to worry about the physical process of producing sound. However, they are significantly limited to music described in MIDI notation, i.e. vocals and other instruments with unique modes of being played cannot be used.
 
 \vspace{0.5cm}
 \framebox[1.1\width]{
     \begin{minipage}{0.8\textwidth}
-        MIDI (Musical Instrument Digital Interface) is a protocol and digital interface for musical notation, it is widely used for recording, editing and playing music\cite{MIDI}.
+        MIDI (Musical Instrument Digital Interface) is a protocol and digital interface for musical notation. It is widely used for recording, editing and playing music.\cite{MIDI}.
     \end{minipage}
 }
 \vspace{0.5cm}
 
-More recent works in the field are symbolically applying new modern transformer machine learning architectures to generate music with long-term structurework\cite{LongTermStructure}; this is a challenge experienced in many music synthesis models. Transformer based architectures use what is called an attention-based mechanism to generate long term structure\cite{Attention}, this is a seperate mechanism that can be used with or without a recurrent or convolutional neural network.
-
+More recent works in the field are applying modern transformer machine learning architectures to generate symbolic music with long-term structurework\cite{LongTermStructure}; this is a challenge experienced in many music synthesis models. Transformer based architectures use what is called an attention-based mechanism to generate long term structure\cite{Attention}. Attention-based mechanisms are different to convolutional or recurrent neural networks, and they can be used with or without them.
 
 \subsection{Critical Evaluation}
 
-Due to their high level of abstraction, Symbolic methods have smaller models with fewer parameters and are easier to train. As a result, they prove helpful in generating abstract long term musical structures. Furthermore, the relatively recent papers showing long term structure\cite{LongTermStructure} and the use of an attention mechanism\cite{Attention} have shown that symbolic methods have future potential and relevance.
+Due to their high level of abstraction, symbolic methods generally have small models with few parameters and are easy to train. As a result, they prove helpful in generating abstract long term musical structures. Furthermore, the relatively recent papers showing long term structure\cite{LongTermStructure} and the use of attention based mechanisms\cite{Attention} show that symbolic methods have future potential and relevance.
 
 Nevertheless, symbolic methods have low levels of resolution and can only be used to generate music described in terms of midi or similar notation. This limited expression is a limitation of symbolic methods, as they cannot be used to generate raw time-series audio features. Furthermore, they have no way of generating the intricacies and expression of the human voice; this is hard to describe symbolically. 
 
-Sadly the disadvantages of symbolic methods (specifically their lack of output expression) outweigh any benefits they offer in forms of long term musical structure. Nevertheless, even if they are limited in their range of expression, they could be helpful if combined with another model capable of synthesizing time-series audio data. The symbolic model could provide the other model with a long term musical structure, and the other model could generate local audio time-series audio.
+Sadly the disadvantages of symbolic methods (specifically their lack of output expression) outweigh any benefits they offer in forms of long term musical structure. Nevertheless, even if they are limited in their range of expression, they could be helpful if combined with another model capable of synthesizing time-series audio data. The symbolic model could provide the other model with a long term musical structure, which uses this to generate local time-series audio.

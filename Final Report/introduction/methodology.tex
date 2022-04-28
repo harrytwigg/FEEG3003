@@ -2,14 +2,14 @@
 
 \subsection{Technical Requirements}
 
-A set of technical reqauirements were used to evaluate DDSP and other model architectures shown in this thesis. These are important for evaluating the utility of DDSP and other model architectures to achieve programmatic and rapid vocal synthesis goals, as outlined in the \nameref{ch:introduction}.
+A set of technical requirements were used to evaluate DDSP and other model architectures shown in this thesis. These are important for evaluating the utility of DDSP and other model architectures to achieve the programmatic and rapid vocal synthesis goals, as outlined in the \nameref{ch:introduction}.
 
 \begin{itemize}
     \item Use of teacher forcing or operator involvement in any methods. Teacher forcing leads to biases in the model outputs and limits the scalability and ease of using any derived models. Manually labelled data shall also be penalised similarly.
-    \item Poor tonal quality in the output, e.g. it is noticeable that the model was generated digitally instead of recorded. Poor tonal quality could be caused by:
+    \item Poor tonal quality in the output, e.g. it is noticeable that the model was generated digitally instead of recorded.
     \item Modular systems shall be evaluated positively because their elements can be built on separately, and the whole system acts less like a 'Black Box'.
     \item Any discarded information, e.g. phase that has been discarded during encoding (e.g. phase) that could be presented to the network shall also be penalised. It is hypothesised that this information could be used to improve the quality of the output.
-    \item Model architectures specific to music and audio signal processing were preferred instead of more general ones. Furthermore, it was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
+    \item Model architectures specific to music and audio signal processing were preferred instead of more general ones. Furthermore, it was believed that directing the model towards specific musical features (such as sinusoidal harmonics) would be beneficial, rather than generalising to the entire audio signal.
 \end{itemize}
 
 \subsection{Academic Requirements}
@@ -18,9 +18,9 @@ Well cited papers or those in scientific journals were looked upon favourably, s
 
 \subsection{DDSP Training}
 
-DDSP is fundamentaly a modular and extendable deep learning archtecture, enabling the timewise modification of evaluated sound qualities called latents (pitch andloudness). Additionally, it features a series of differentiable versions of traditional signal processing techniques. After background research DDSP appeared the most promising model architecture due to several factors discussed in \nameref{section:DDSP}.
+DDSP is fundamentally a modular and extendable deep learning architecture, enabling the timewise modification of evaluated sound qualities called latents (pitch and loudness). Additionally, it features a series of differentiable versions of traditional signal processing techniques. After background research, DDSP appeared to be the most promising model architecture due to several factors discussed in \nameref{section:DDSP}.
 
-Two different datasets were created, one male voice artist and one female voice artist, to see how the DDSP architecture would handle male and female voices differently.
+Two different datasets were created, one for a male voice artist and one for a female voice artist, to see how the DDSP architecture would handle male and female voices differently.
 
 For each artist, two different albums were picked of similar musical styles to ensure consistency of vocal style across the entire dataset; this was done to try and encourage the model to learn a specific timbre of voice.
 
@@ -28,19 +28,19 @@ The albums were picked so that they only had one voice on the vocal track to avo
 
 Each dataset was processed through a pre-trained model called Spleter\cite{Spleeter}. This pre-trained model separated the vocal track from the instrumentals for each song in the album. Consequently, large datasets could be easily created featuring a singular vocal track and enabling datasets 10x the size of the paper this work was based on\cite{SingingDDSP}.
 
-Two models were then trained using the DDSP library\cite{DDSPPip}, one for for each respective dataset. The code for these were derived from the DDSP Library and a variation of DDSP designed for singing\cite{SingingDDSP}. Model hyperparameters were kept the same as in the Singing DDSP paper\cite{SingingDDSP} as the researchers had demonstrated thorough testing of which hyperparameters were the best. 200,000 epochs were used for each dataset; this was deemed sufficient for this project whilst keeping the training time manageable.
+Two models were then trained using the DDSP library\cite{DDSPPip}, one for each respective dataset. The code for these was derived from the DDSP Library and a variation of DDSP designed for singing\cite{SingingDDSP}. Model hyperparameters were kept the same as in the Singing DDSP paper\cite{SingingDDSP} as the researchers had demonstrated thorough testing of which hyperparameters were the best. 200,000 epochs were used for each dataset; this was deemed sufficient for sufficient model quality whilst keeping the training time manageable.
 
 \subsection{DDSP Inferencing}
 
-Following the training of both models, the models underwent several inferencing tests designed to evaluate the models's encoding of the latent characteristics, and to evaluate the flexability of the DDSP architecture in a variety of different situations.
+Following the training of both models, the models underwent several inferencing tests designed to evaluate their encoding of the latent characteristics (pitch, loudness, and timbral transfer) and to evaluate the flexibility of the DDSP architecture in a variety of different situations.
 
 \begin{enumerate}
     \item The models were inferred on the same dataset used for training to test the model's accuracy in predicting frames from the training dataset.
     \item A pitch transposition was attempted. Vocal samples from the original dataset were transposed up and down an octave to see how the model would perform on unseen vocal ranges.
-    \item A mono-pitch inference test was conducted to determine the model's ability at producing a single pitch.
+    \item A mono-pitch inference test was conducted to determine the model's ability to produce a single pitch.
     \item A log-linear loudness inference was attempted to gauge the model's ability to modify the loudness of the vocal samples.
-    \item For the best model timbral transfer tests were conducted, the best was determined by performance in previous inferencing tests. Tests were conducted on an unseen male and female voice to determine performance with different voice types. The test frames were separated similarly to the test datasets using Spleeter. In the tests, all latents remained unmodified to isolate the effect of changing the vocal artist.
-    \item Again on the best model an inference test on a track with instrumentals was conducted to observe the models performance on unseen instrumentals within a track. Again, all latents remained unmodified to isoalate any effect of the instrumentals. The track was the female voice artist from the timbral trasnfer test. The same timestamped frame was used so the output between the inferred frames for both tracks could be compared.
+    \item For the best model, timbral transfer tests were conducted. The best was determined by performance in previous inferencing tests. The timbral transfer tests were conducted on unseen male and female voices to determine performance with different unseen voice types. The test frames were separated similarly to the test datasets using Spleeter. In the tests, all latents remained unmodified to isolate the effect of changing the vocal artist.
+    \item Again, on the best model, an inference test on a track with instrumentals was conducted to observe the model's performance on unseen instrumentals within a track. Again, all latents remained unmodified to isolate any effect of the instrumentals. The track was the female voice artist from the timbral transfer test. The same timestamped frame was used to compare the output between the inferred frames for both tracks.
 \end{enumerate}
 
 Finally, in light of the experimental results and other academic research, recommendations for future work in the field are made.

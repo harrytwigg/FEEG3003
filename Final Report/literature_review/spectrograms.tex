@@ -3,9 +3,9 @@
 
 Spectrograms have a long history but were first used with machine learning models to synthesise music at the start of the 21st century\cite{NoteOnsetDetection}.
 
-The time-domain based audio signal was divided into equal lengths of shorter periods. Then, a Fast Fourier Transform (FFT) is applied to each segment, decomposing the signal at each of the timestep periods into its constituent frequencies and corresponding amplitude. The complex values from the Fast Fourier Transform are complex values, giving spectrograms of frequency and phase.
+A spectrogram is a graphical plot of the decomposition of sound using the \acrfull{STFT}. It consists of 2 plots frequency against time and phase against time. Each point of the plots is coloured in amplitude/intensity of the decomposed audio signal at a specific point in time. The STFT is a sum of overlapped Fast Fourier Transforms (FFTs) of the audio signal. After calculation of the STFT, the sample is divided into overlapping frames of equal length, known as the hamming window. Finally, a Fast Fourier Transform is applied to each audio signal frame. 
 
-A spectrogram is a graphical plot of the decomposition of sound using the \acrfull{STFT}. It consists of 2 plots frequency against time and phase against time. Each point of the plots is coloured in amplitude/intensity of the decomposed audio signal at a specific point in time. The STFT is a sum of overlapped Fast Fourier Transforms (FFTs) of the audio signal. After calculation of the STFT, the sample is divided into overlapping frames of equal length, known as the hamming window. Finally, the FFT is then applied to each audio signal frame. The outputted complex functions from the Fast Fourier Transform give spectrograms of amplitude and phase of different frequencies at each timestep.
+The outputted complex functions from the Fast Fourier Transform give spectrograms of amplitude and phase of different frequencies at each timestep.
 
 \subsection{Mel-Spectrograms}
 
@@ -18,7 +18,7 @@ Mel Spectrograms are an adaptation of the spectrograms more suited to sounds int
     \label{fig:spectrograms}
 \end{figure}
 
-There is no standardised formula for converting frequncy onto the mel logarhthmic scale as it is up to interpretation the adjustment level that is required for human hearing, though then most common formula is\cite{SpeechCommunication}:
+There is no standardised formula for converting frequncy onto the mel logarhthmic scale as it is up to interpretation the adjustment level that is required for human hearing. However, the most common formula is\cite{SpeechCommunication}:
 
 \begin{equation}
     m = 2596 log(1 +  \frac{f}{700}) = 1127 ln (1 + \frac{f}{700})
@@ -26,9 +26,9 @@ There is no standardised formula for converting frequncy onto the mel logarhthmi
 
 \subsection{Intepreting Phase}
 
-The STFT is a complex function; however, only the magnitude part is currently utilised by most models, and the phase part is discarded. Any reconstructed signal cannot have the same phase as the original signal if the phase information is lost. Human hearing is capable of distinguishing between two sounds with the same frequency, but with different phases, meaning that sounds resynthesized without phase can sound unnatural and different to the original, regardless of the frequency.
+The STFT is a complex function; however, only the magnitude part is currently utilised by most models, and the phase part is discarded. Therefore, any reconstructed signal cannot have the same phase as the original signal if the phase information is lost. Furthermore, human hearing can distinguish between two sounds with the same frequency but different phases, meaning that sounds synthesised without phase can sound unnatural and different to the original, regardless of the frequency.
 
-Success at interpreting the phase spectrogram to date has been limited. As a result, most models discard the phase part of the signal and make models purely off the frequency spectrogram. Discarding the phase is a problem as the phase is a crucial part of spectrogram representation, making the image representation fully convertible back to audio, though it is challenging to work with for several reasons:
+Success at interpreting the phase spectrogram to date has been limited. As a result, most models discard the phase part of the signal and make models purely off the frequency spectrogram. Discarding the phase is a problem as the phase is a crucial part of spectrogram representation. The phase spectrogram makes the spectrogram image representation fully convertible back to audio, though it is challenging to work with for two main reasons.
 
 Firstly, the phase spectrogram appears random, making it challenging to distinguish meaningful information from noise.
 
@@ -52,10 +52,9 @@ Spectrogram based encoding for music sound synthesis is currently the best metho
     \label{fig:spectrogram_features}
 \end{figure}
 
-
-Additionally, one of their defining advantages is that they can be used to reconstruct the original audio signal from the spectrogram with the inverse Fourier Transform. The reconstructed audio signal will be almost identical to the original (phase-matched) if phase and magnitude spectrograms are used.
+Additionally, one of the spectrogram's defining advantages is that it can be used to reconstruct the original audio signal from the inverse Fourier Transform. The reconstructed audio signal will be almost identical to the original (phase-matched) if phase and magnitude spectrograms are used.
 Spectrograms are at the core of many recently published music synthesis models and papers, showing academic relevance.
 
 However, most models based on spectrograms, e.g. raw CNN-based models, are limited and do not make use of biases in sound, for instance, the tendency of natural sounds to oscillate sinusoidally at harmonic frequencies according to the harmonic plus noise model. In addition, many traditional autoencoder-based RNN models do not enable the configuration of specific sound features, e.g. fundamental frequency or loudness. Additionally, spectrogram based models are not without problems (e.g. the discarding phase of information).
 
-Therefore spectrograms, although helpful, cannot be used to synthesise audio signals on their own; to achieve widespread academic and commercial use, a different representation to help a model relate them to sound is required, for example, \nameref{section:DDSP}.
+Therefore, although helpful, spectrograms cannot be used to synthesise audio signals on their own. To achieve widespread academic and commercial use, a different representation to help a model relate them to sound is required, for example, \nameref{section:DDSP}.
