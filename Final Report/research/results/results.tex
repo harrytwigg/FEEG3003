@@ -6,7 +6,7 @@ All inferencing tests took approximately 0.3 seconds for a 4-minute frame; this 
 
 \subsection{Recreation from the Training Dataset}
 
-A random frame was selected and passed through each model; loudness and F0 were kept constant. The results of the inferencing were then compared to the original training dataset.
+A random frame was selected and passed through each model; loudness and F0 were unmodified. The results of the inferencing were then compared to the original training dataset.
 
 Each model successfully recreated original frames, though the Taylor Swift dataset yielded the best results.
 
@@ -28,11 +28,11 @@ The resynthesis of understandable words from the original frame was a far more c
 
 \subsection{F0 Pitch Transposition by a fixed octave}
 
-A more advanced inferencing test was then undertaken. The fundamental frequency latent as determined by CREPE was transposed by fixed octaves (-2, -1, 0, 0.5, 1, 2), and the inferencing was re-performed on the transposed latents. Both models responded to the change in F0 and could transpose harmonic pitch by the correct octave amount accurately. At minor transpositions, e.g. +1 or -1 octave, the inferred frame still sounded somewhat like a human voice. However, it sounded like the noise, and harmonic components were separate sources at greater transpositions and did not constitute one voice.
+A more advanced inferencing test was then undertaken. The fundamental frequency latent as determined by CREPE was transposed by fixed octaves (-2, -1, 0, 0.5, 1, 2), and the inferencing was re-performed on the transposed latents. Both models responded to the change in F0 and could accurately transpose harmonic pitch by the correct octave amount. At minor transpositions, e.g. +1 or -1 octave, the inferred frame still sounded somewhat like a human voice. However, it sounded like the noise, and harmonic components were separate sources at greater transpositions and did not constitute one voice.
 
 As expected, modifying F0 did not change the pitch of the filtered noise at all, confirming that the pitch change had been directly passed to the harmonic synthesiser. This finding is interesting because we would have expected a little bit of distortion in the original pitch.
 
-At extreme transpositions, harmonics sometimes appeared to go silent. The resynthesis then sounded like a whisper, coming almost entirely out of the filtered noise. Whispering occurs when the vocal cords are held rigid, preventing them from vibrating and producing sinusoidal sounds (harmonics in the case of singing). The fact that the model's output sounded like a whisper is a good sign that the model was able to learn and distinguish the noise and harmonics as per the Harmonic Plus Noise Model\cite{HarmonicPlusNoise}\cite{OriginalDDSP}.
+At extreme transpositions, harmonics sometimes appeared to go silent. The resynthesis sounded like a whisper, coming almost entirely out of the filtered noise. Whispering occurs when the vocal cords are held rigid, preventing them from vibrating and producing sinusoidal sounds (harmonics in the case of singing). The fact that the model's output sounded like a whisper is a good sign that the model was able to learn and distinguish the noise and harmonics as per the Harmonic Plus Noise Model\cite{HarmonicPlusNoise}\cite{OriginalDDSP}.
 
 \begin{figure}[H]
     \centering
