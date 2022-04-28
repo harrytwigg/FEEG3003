@@ -1,20 +1,12 @@
 \section{Methodology}
 
-A standardised process was developed to evaluate the quality of existing methods, and a critical review of existing literature on music sound synthesis (focusing on vocal sound synthesis) was conducted. This standardised process was necessary as it would be difficult to compare the results of different methods. Each of the approaches evaluated used different levels of abstraction and resolution of musical and audio data. Additionally, they have different trade-offs in terms of accuracy and computational efficiency.
-
-The standardised process is based on good machine learning principles and academic best practices. The technical requirements are as follows:
-
 \subsection{Technical Requirements}
 
+A set of technical reqauirements were used to evaluate DDSP and other model architectures shown in this thesis. These are important for evaluating the utility of DDSP and other model architectures to achieve programmatic and rapid vocal synthesis goals, as outlined in the \nameref{ch:introduction}.
+
 \begin{itemize}
-    \item Overly time-consuming methods should be penalised due to the limited time for the project. These can come in many forms, e.g. excessive training and computation time or extensive datasets requirements, excessive hyperparameter tuning, or overly large networks
     \item Use of teacher forcing or operator involvement in any methods. Teacher forcing leads to biases in the model outputs and limits the scalability and ease of using any derived models. Manually labelled data shall also be penalised similarly.
     \item Poor tonal quality in the output, e.g. it is noticeable that the model was generated digitally instead of recorded. Poor tonal quality could be caused by:
-          \begin{itemize}
-              \item Spectral leakage due to inaccuracies in Fourier representations
-              \item Poor oscillatory output representation that sounds synthetic
-          \end{itemize}
-    \item To analyse the tonal quality, a statistical method of loss must be defined and used
     \item Modular systems shall be evaluated positively because their elements can be built on separately, and the whole system acts less like a 'Black Box'.
     \item Any discarded information, e.g. phase that has been discarded during encoding (e.g. phase) that could be presented to the network shall also be penalised. It is hypothesised that this information could be used to improve the quality of the output.
     \item Model architectures specific to music and audio signal processing were preferred instead of more general ones. Furthermore, it was believed that directing the model towards specific musical features (such as harmonics and pitch) would be beneficial, rather than generalising to the entire audio signal.
@@ -26,7 +18,7 @@ Well cited papers or those in scientific journals were looked upon favourably, s
 
 \subsection{DDSP Training}
 
-After the initial research, DDSP, a modular approach, was picked; it enabled modification of evaluated sound qualities called latents (pitch, loudness) and a series of differentiable versions of traditional signal processing techniques. DDSP was the most promising model architecture due to several factors discussed in \nameref{section:DDSP}.
+DDSP is fundamentaly a modular and extendable deep learning archtecture, enabling the timewise modification of evaluated sound qualities called latents (pitch andloudness). Additionally, it features a series of differentiable versions of traditional signal processing techniques. After background research DDSP appeared the most promising model architecture due to several factors discussed in \nameref{section:DDSP}.
 
 Two different datasets were created, one male voice artist and one female voice artist, to see how the DDSP architecture would handle male and female voices differently.
 

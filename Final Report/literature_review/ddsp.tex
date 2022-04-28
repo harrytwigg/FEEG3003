@@ -192,6 +192,8 @@ The method yields highly accurate results (although it is still noticeable that 
 
 A new team has conducted attractive work building on top of the initial paper to produce singing voice synthesis\cite{SingingDDSP} specifically. This paper outlines how the DDSP model can be further altered to interpret better and learn how to model the human voice.
 
+The model in this paper was hoped model consonants using the filtered noise bank, and vowels using the harmonic oscillator module, this is the same approach used later in this thesis.
+
 The adaptation involved adding \acrfull{MFCC} an additional time-varying form of encoding. The coefficients together make up a \acrfull{MFC}. A Mel-frequency cepstrum (MFC) represents the spectrum of a signal using a non-linear Mel frequency scale.
 
 MFFCs have a long history of use in telecommunications and speech processing\cite{MFCCHistory}. Thus, the original authors hypothesised that this representation would more accurately model the non-linearity of the human voice, thus making a vocal synthesis model more accurate.
