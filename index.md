@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Singing DDSP Demo
 
 You can use the [editor on GitHub](https://github.com/harrytwigg/FEEG3003/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
