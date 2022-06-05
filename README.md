@@ -15,3 +15,7 @@ All experimental research can be seen in the folder `vocal_ddsp`. This contains 
 Dataset preparation, training and inferencing was done in Google Colab, the notebooks of which are available in the `vocal_ddsp/notebooks` folder.
 
 Required gin configs are available in the `vocal_ddsp/gin` folder.
+
+Training models and datasets:
+
+https://drive.google.com/drive/folders/1CWdEco9tJ5fNBZfvLGqbSrfdYQ6pLZsz?usp=sharing
