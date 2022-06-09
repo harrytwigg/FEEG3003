@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Adjustable Singing Synthesis Using Machine Learning</title>
+</head>
+
+<body>
+    <h1>Adjustable Singing Synthesis Using Machine Learning</h1>
+    <em>Using DDSP to learn and synthesize singing with adjustable latent space parameters</em>
+    <p>2 models were created one for each of the artists Coldplay and Taylor Swift.</p>
+    <h2>Unmodified Inference</h2>
+    <p>A sample was re-created with no latent space parameters adjusted. This was done to gauge the performance of the
+        model.</p>
+    <h2>Pitch Transposition</h2>
+    <p>This test involved transposing F0 across the sample by an octave amount, so that the underlying tune was
+        transposed by an octave. Sampes were transposed by -2, -1, 0 (unmodified inference), +0.5, +1, +2 octaves.</p>
+    <h2>Constant F0</h2>
+    <p>F0 was set as constant throughout the sample as, the F0 value chosen was the average of the F0 values in the
+        sample, however any value could have been used.</p>
+    <h2>Timbral Transfer Test</h2>
+    <p>The female voice model (Taylor Swift) was applied to other unseen artists to evalute the generality of the model.
+    </p>
+    <h2>Separation of Vocals</h2>
+    <p>Vocals were separated from the original track with instrrumentals</p>
+    <h2>Links</h2>
+    <ul>
+        <li><a href="https://github.com/harrytwigg/FEEG3003/" target="_blank">The Code</a></li>
+        <li><a href="https://1drv.ms/b/s!ArIPg_vhs6CEov5SBq-GE2DUf9SjJg?e=fAapvd" target="_blank">The Paper</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1CWdEco9tJ5fNBZfvLGqbSrfdYQ6pLZsz?usp=sharing"
+                target="_blank">Training Models and Datasets</a></li>
+</body>
+
+</html>
