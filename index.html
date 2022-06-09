@@ -3,27 +3,277 @@
 
 <head>
     <title>Adjustable Singing Synthesis Using Machine Learning</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="padding: 2em">
     <h1>Adjustable Singing Synthesis Using Machine Learning</h1>
     <em>Using DDSP to learn and synthesize singing with adjustable latent space parameters</em>
+    <br />
     <p>2 models were created one for each of the artists Coldplay and Taylor Swift.</p>
-    <h2>Unmodified Inference</h2>
+    <h3>Unmodified Inference</h3>
     <p>A sample was re-created with no latent space parameters adjusted. This was done to gauge the performance of the
-        model.</p>
-    <h2>Pitch Transposition</h2>
+        model at recreatating samples exactly.</p>
+    <h4>Coldplay</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original Frame</b>
+                <br />
+                <img src="images/coldplay-original.png" alt="Original Frame" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/original_frame.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred Original</b>
+                <br />
+                <img src="images/coldplay-inferred.png" alt="Inferred Original" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/inferred_original.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h4>Taylor Swift</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original Frame</b>
+                <br />
+                <img src="images/ts-original.png" alt="Original Frame" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/original_frame.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred Original</b>
+                <br />
+                <img src="images/ts-inferred.png" alt="Inferred Original" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/inferenced_original.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h3>Pitch Transposition</h3>
     <p>This test involved transposing F0 across the sample by an octave amount, so that the underlying tune was
         transposed by an octave. Sampes were transposed by -2, -1, 0 (unmodified inference), +0.5, +1, +2 octaves.</p>
-    <h2>Constant F0</h2>
+    <h4>Coldplay</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>-2</b>
+                <br />
+                <img src="images/coldplay-2.png" alt="-2" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/-2.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>-1</b>
+                <br />
+                <img src="images/coldplay-1.png" alt="-1" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/-1.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>0 (Unmodified Inference)</b>
+                <br />
+                <img src="images/coldplay0.png" alt="0 (Unmodified Inference)" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/0.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+0.5</b>
+                <br />
+                <img src="images/coldplay+0.5.png" alt="+0.5" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/+0.5.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+1</b>
+                <br />
+                <img src="images/coldplay+1.png" alt="+1" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/+1.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+2</b>
+                <br />
+                <img src="images/coldplay+2.png" alt="+2" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/+2.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h4>Taylor Swift</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>-2</b>
+                <br />
+                <img src="images/ts-2.png" alt="-2" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/-2.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>-1</b>
+                <br />
+                <img src="images/ts-1.png" alt="-1" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/-1.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>0 (Unmodified Inference)</b>
+                <br />
+                <img src="images/ts0.png" alt="0 (Unmodified Inference)" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/0.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+0.5</b>
+                <br />
+                <img src="images/ts+0.5.png" alt="+0.5" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/+0.5.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+1</b>
+                <br />
+                <img src="images/ts+1.png" alt="+1" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/+1.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>+2</b>
+                <br />
+                <img src="images/ts+2.png" alt="+2" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/+2.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h3>Constant F0</h3>
     <p>F0 was set as constant throughout the sample as, the F0 value chosen was the average of the F0 values in the
         sample, however any value could have been used.</p>
-    <h2>Timbral Transfer Test</h2>
+        <h4>Coldplay</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original Frame</b>
+                <br />
+                <img src="images/coldplay-original.png" alt="Original Frame" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/original_frame.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred Original</b>
+                <br />
+                <img src="images/coldplay-monopitch.png" alt="Constant F0" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Coldplay/monopitch_mean.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h4>Taylor Swift</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original Frame</b>
+                <br />
+                <img src="images/ts-original.png" alt="Original Frame" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/original_frame.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred Original</b>
+                <br />
+                <img src="images/ts-monopitch.png" alt="Constant F0" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Taylor%20Swift/monopitch_mean.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
+    <h3>Timbral Transfer Test</h3>
     <p>The female voice model (Taylor Swift) was applied to other unseen artists to evalute the generality of the model.
     </p>
-    <h2>Separation of Vocals</h2>
-    <p>Vocals were separated from the original track with instrrumentals</p>
-    <h2>Links</h2>
+    <h3>Separation of Vocals</h3>
+    <p>Vocals were separated from the original track with instrumentals</p>
+    <h3>Links</h3>
     <ul>
         <li><a href="https://github.com/harrytwigg/FEEG3003/" target="_blank">The Code</a></li>
         <li><a href="https://1drv.ms/b/s!ArIPg_vhs6CEov5SBq-GE2DUf9SjJg?e=fAapvd" target="_blank">The Paper</a></li>
