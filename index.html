@@ -214,7 +214,7 @@
     <h3>Constant F0</h3>
     <p>F0 was set as constant throughout the sample as, the F0 value chosen was the average of the F0 values in the
         sample, however any value could have been used.</p>
-        <h4>Coldplay</h4>
+    <h4>Coldplay</h4>
     <div class="container">
         <div class="row">
             <div class="col-sm" style="margin-bottom: 2em">
@@ -229,7 +229,7 @@
                 </audio>
             </div>
             <div class="col-sm" style="margin-bottom: 2em">
-                <b>Inferred Original</b>
+                <b>Constant F0</b>
                 <br />
                 <img src="images/coldplay-monopitch.png" alt="Constant F0" width="200px" style="margin: 2em">
                 <br />
@@ -256,7 +256,7 @@
                 </audio>
             </div>
             <div class="col-sm" style="margin-bottom: 2em">
-                <b>Inferred Original</b>
+                <b>Constant F0</b>
                 <br />
                 <img src="images/ts-monopitch.png" alt="Constant F0" width="200px" style="margin: 2em">
                 <br />
@@ -271,8 +271,74 @@
     <h3>Timbral Transfer Test</h3>
     <p>The female voice model (Taylor Swift) was applied to other unseen artists to evalute the generality of the model.
     </p>
+    <h4>Lewis Capaldi</h4>
+    Test of the female voice model on a male voice
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original Frame</b>
+                <br />
+                <img src="images/capaldi-original.png" alt="Original Frame" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Lewis%20Capaldi/original_frame.mp3"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred Original</b>
+                <br />
+                <img src="images/capaldi-inferred.png" alt="Inferred Original" width="200px" style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Lewis%20Capaldi/inferenced_original.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Constant F0</b>
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Lewis%20Capaldi/monopitch_mean.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
     <h3>Separation of Vocals</h3>
     <p>Vocals were separated from the original track with instrumentals</p>
+    <h4>Birdy</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Original With Instrumentals</b>
+                <br />
+                <img src="images/birdy-original-with-instrumentals.png" alt="Original With Instrumentals" width="200px"
+                    style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Birdy/original_with_instrumentals.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+            <div class="col-sm" style="margin-bottom: 2em">
+                <b>Inferred With Instrumentals</b>
+                <br />
+                <img src="images/birdy-inferred-with-instrumentals.png" alt="Inferred With Instrumentals" width="200px"
+                    style="margin: 2em">
+                <br />
+                <audio controls>
+                    <source
+                        src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/results/Birdy/inferred_with_instrumentals.wav"
+                        type="audio/wav">
+                </audio>
+            </div>
+        </div>
+    </div>
     <h3>Links</h3>
     <ul>
         <li><a href="https://github.com/harrytwigg/FEEG3003/" target="_blank">The Code</a></li>
