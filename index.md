@@ -9,7 +9,7 @@
 A sample was re-created with no latent space parameters adjusted. This was done to gauge the performance of the model.
 
 <audio ref='Original Frame' src="https://raw.githubusercontent.com/harrytwigg/FEEG3003/master/vendor/results/Coldplay/original_frame.wav"></audio>
-
+[elephant](results/Coldplay/original_frame.wav)
 
 ### Pitch Transposition
 
